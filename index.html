@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Allons-y ! · Français A1 → B1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --beige:#F6F1E7;
+  --beige-2:#EFE7D6;
+  --card:#FDFBF6;
+  --blue-100:#DCEAF2;
+  --blue-300:#A9C9DB;
+  --blue-500:#5B8BA8;
+  --blue-700:#34607E;
+  --ink:#22384A;
+  --ink-soft:#5C6E7E;
+  --accent:#D96C5F;
+  --ok:#6F9B68;
+  --line:#E3D9C4;
+  --r:16px;
+  --shadow:0 2px 12px rgba(34,56,74,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--beige);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.display{font-family:'Fraunces',serif}
+.mono{font-family:'JetBrains Mono',monospace}
+
+/* ---------- top bar ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(246,241,231,.88);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.bar{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:16px}
+.logo{font-family:'Fraunces',serif;font-weight:700;font-size:1.25rem;cursor:pointer;letter-spacing:.2px}
+.logo span{color:var(--blue-500)}
+.bar .spacer{flex:1}
+.xp{
+  font-family:'JetBrains Mono',monospace;font-size:.8rem;
+  background:var(--blue-100);color:var(--blue-700);
+  padding:6px 14px;border-radius:999px;white-space:nowrap;
+}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1080px;margin:0 auto;padding:32px 24px 96px}
+.crumb{font-size:.85rem;color:var(--ink-soft);margin-bottom:24px}
+.crumb a{color:var(--blue-700);text-decoration:none;cursor:pointer}
+.crumb a:hover{text-decoration:underline}
+
+/* ---------- hero ---------- */
+.hero{padding:56px 0 40px;text-align:center}
+.hero .eyebrow{font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-500);margin-bottom:18px}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(2.4rem,6vw,4rem);font-weight:600;line-height:1.12;margin-bottom:18px}
+.hero h1 em{font-style:italic;color:var(--blue-500)}
+.hero p{max-width:540px;margin:0 auto;color:var(--ink-soft);font-size:1.05rem}
+
+/* metro line of the method */
+.methode{margin:48px auto 8px;max-width:760px}
+.methode .titre{text-align:center;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:20px}
+.ligne{display:flex;align-items:flex-start;position:relative}
+.ligne::before{content:'';position:absolute;top:13px;left:7%;right:7%;height:3px;background:var(--blue-300);border-radius:2px}
+.station{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;z-index:1}
+.station .dot{width:28px;height:28px;border-radius:50%;background:var(--card);border:3px solid var(--blue-500);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--blue-700);transition:.25s}
+.station .lbl{font-size:.7rem;text-align:center;color:var(--ink-soft);max-width:86px;line-height:1.3}
+.station.done .dot{background:var(--ok);border-color:var(--ok);color:#fff}
+.station.now .dot{background:var(--blue-500);color:#fff;transform:scale(1.18)}
+.station.now .lbl{color:var(--ink);font-weight:600}
+.station.click{cursor:pointer}
+.station.click:hover .dot{transform:scale(1.12)}
+
+/* ---------- level cards ---------- */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:48px}
+.lvl{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:28px;cursor:pointer;transition:.25s;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;gap:10px;
+}
+.lvl:hover{transform:translateY(-4px);border-color:var(--blue-300)}
+.lvl .tag{font-family:'JetBrains Mono',monospace;font-size:1.6rem;font-weight:500;color:var(--blue-500)}
+.lvl h3{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600}
+.lvl p{font-size:.9rem;color:var(--ink-soft)}
+.lvl .prog{height:6px;background:var(--beige-2);border-radius:3px;overflow:hidden;margin-top:8px}
+.lvl .prog i{display:block;height:100%;background:var(--blue-500);border-radius:3px;transition:.4s}
+.lvl .pct{font-size:.75rem;color:var(--ink-soft);font-family:'JetBrains Mono',monospace}
+
+/* ---------- topic list ---------- */
+.lvl-head{margin-bottom:32px}
+.lvl-head h2{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:600;margin-bottom:8px}
+.lvl-head p{color:var(--ink-soft);max-width:620px}
+.topics{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.topic{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:18px 20px;display:flex;gap:14px;align-items:flex-start;transition:.2s;
+}
+.topic.open{cursor:pointer}
+.topic.open:hover{border-color:var(--blue-300);transform:translateY(-2px)}
+.topic .num{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--blue-500);background:var(--blue-100);border-radius:8px;padding:4px 8px;flex-shrink:0;margin-top:2px}
+.topic h4{font-size:1rem;font-weight:600;line-height:1.35}
+.topic p{font-size:.82rem;color:var(--ink-soft);margin-top:4px}
+.topic .soon{font-size:.7rem;font-family:'JetBrains Mono',monospace;color:var(--accent);margin-top:8px;display:inline-block}
+.topic .go{font-size:.7rem;font-family:'JetBrains Mono',monospace;color:var(--ok);margin-top:8px;display:inline-block}
+
+/* ---------- topic view ---------- */
+.t-head{margin-bottom:28px}
+.t-head .lvl-tag{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--blue-500);letter-spacing:.12em}
+.t-head h2{font-family:'Fraunces',serif;font-size:2rem;font-weight:600;margin:6px 0}
+.t-head p{color:var(--ink-soft)}
+.phase-box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px;margin-top:28px;box-shadow:var(--shadow)}
+.phase-box h3{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:600;margin-bottom:6px}
+.phase-box .sub{color:var(--ink-soft);font-size:.9rem;margin-bottom:24px}
+.nav-phases{display:flex;justify-content:space-between;margin-top:28px;gap:12px}
+
+/* ---------- components ---------- */
+.btn{
+  font-family:'Outfit',sans-serif;font-size:.9rem;font-weight:500;
+  border:none;border-radius:12px;padding:11px 22px;cursor:pointer;transition:.2s;
+}
+.btn-p{background:var(--blue-500);color:#fff}
+.btn-p:hover{background:var(--blue-700)}
+.btn-g{background:var(--beige-2);color:var(--ink)}
+.btn-g:hover{background:var(--line)}
+.btn-ok{background:var(--ok);color:#fff}
+.btn:disabled{opacity:.45;cursor:default}
+.speak{
+  background:var(--blue-100);border:none;border-radius:10px;cursor:pointer;
+  padding:6px 12px;font-size:.85rem;color:var(--blue-700);transition:.2s;flex-shrink:0;
+}
+.speak:hover{background:var(--blue-300)}
+
+/* vocab cards */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.vcard{background:var(--beige);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.vcard .row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.vcard .fr{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600}
+.vcard .ipa{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--blue-500);margin-top:2px}
+.vcard .es{font-size:.88rem;color:var(--ink-soft);margin-top:6px}
+.vcard .ex{font-size:.85rem;font-style:italic;color:var(--blue-700);margin-top:8px;border-left:3px solid var(--blue-300);padding-left:10px}
+
+/* matching game */
+.match{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:640px}
+.mcol{display:flex;flex-direction:column;gap:10px}
+.mitem{background:var(--beige);border:2px solid var(--line);border-radius:12px;padding:12px 16px;cursor:pointer;text-align:center;font-size:.92rem;transition:.18s;user-select:none}
+.mitem:hover{border-color:var(--blue-300)}
+.mitem.sel{border-color:var(--blue-500);background:var(--blue-100)}
+.mitem.ok{border-color:var(--ok);background:#EDF3EA;color:var(--ok);cursor:default}
+.mitem.bad{border-color:var(--accent);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+
+/* dialogue */
+.dlg{max-width:680px;display:flex;flex-direction:column;gap:12px}
+.dline{display:flex;gap:12px;align-items:flex-start}
+.dline .who{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--blue-500);min-width:64px;padding-top:10px;text-align:right}
+.dline .bub{background:var(--beige);border:1px solid var(--line);border-radius:14px;padding:10px 16px;font-size:.95rem;flex:1}
+.dline:nth-child(even) .bub{background:var(--blue-100);border-color:var(--blue-300)}
+.dline .bub em{display:block;font-size:.78rem;color:var(--ink-soft);font-style:normal;margin-top:4px}
+
+/* quiz */
+.q{margin-bottom:26px;max-width:680px}
+.q .stem{font-size:1rem;margin-bottom:12px}
+.q .stem b{color:var(--blue-700)}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opt{background:var(--beige);border:2px solid var(--line);border-radius:12px;padding:10px 18px;cursor:pointer;font-size:.92rem;transition:.18s}
+.opt:hover{border-color:var(--blue-300)}
+.opt.ok{border-color:var(--ok);background:#EDF3EA;color:var(--ok);font-weight:600}
+.opt.bad{border-color:var(--accent);background:#F8E9E6;color:var(--accent)}
+.opt.lock{pointer-events:none;opacity:.6}
+.opt.lock.ok,.opt.lock.bad{opacity:1}
+.fb{font-size:.84rem;margin-top:10px;display:none}
+.fb.show{display:block}
+.fb.good{color:var(--ok)}
+.fb.no{color:var(--accent)}
+
+/* speaking situations */
+.sit{background:var(--beige);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:16px;max-width:720px}
+.sit h4{font-family:'Fraunces',serif;font-size:1.1rem;margin-bottom:6px}
+.sit .ctx{font-size:.88rem;color:var(--ink-soft);margin-bottom:12px}
+.sit ul{margin:0 0 12px 18px;font-size:.9rem}
+.sit ul li{margin-bottom:4px}
+.sit .modele{background:var(--card);border-left:3px solid var(--blue-500);border-radius:0 10px 10px 0;padding:12px 16px;font-style:italic;font-size:.9rem;color:var(--blue-700);margin-bottom:12px;white-space:pre-line}
+
+/* listening */
+.lq{background:var(--beige);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px;max-width:680px}
+.lq .play-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.lq .play-row span{font-size:.85rem;color:var(--ink-soft)}
+
+/* grammar */
+.gram{max-width:720px}
+.gram h4{font-family:'Fraunces',serif;font-size:1.1rem;margin:22px 0 10px;color:var(--blue-700)}
+.gram p{font-size:.94rem;margin-bottom:10px}
+.gram table{border-collapse:collapse;margin:10px 0 18px;width:100%;max-width:460px;font-size:.92rem}
+.gram td,.gram th{border:1px solid var(--line);padding:8px 14px;text-align:left}
+.gram th{background:var(--blue-100);font-weight:600;font-family:'JetBrains Mono',monospace;font-size:.78rem}
+.gram td:first-child{background:var(--beige);font-weight:500}
+.gram .tip{background:var(--blue-100);border-radius:12px;padding:14px 18px;font-size:.88rem;margin:14px 0}
+.gram .tip b{color:var(--blue-700)}
+
+.done-row{margin-top:32px;padding-top:24px;border-top:1px dashed var(--line);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.done-row .msg{font-size:.85rem;color:var(--ok);display:none}
+
+footer{border-top:1px solid var(--line);padding:28px 24px;text-align:center;font-size:.78rem;color:var(--ink-soft)}
+footer .mono{color:var(--blue-500)}
+
+@media(max-width:640px){
+  .phase-box{padding:22px 18px}
+  .ligne .lbl{display:none}
+  .match{grid-template-columns:1fr 1fr;gap:8px}
+  .dline .who{min-width:46px}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <div class="logo" onclick="showHome()">Allons-y<span> !</span></div>
+    <div class="spacer"></div>
+    <div class="xp" id="xpBox">0 XP</div>
+  </div>
+</header>
+<main class="wrap" id="app"></main>
+<footer>
+  Contenido alineado al <span class="mono">CECR (A1–B1)</span> · Método: vocabulario → uso → gramática · Black IA
+</footer>
+<script>
+/* ---------- Currículum CECR: 30 temas por nivel ---------- */
+const LEVELS = {
+ A1:{name:'Découverte',desc:'Sobrevivir en francés: saludar, presentarte, pedir, describir tu mundo inmediato con frases simples.',topics:[
+  {id:'a1-1', t:'Saluer et se présenter', d:'Saludos formales e informales, decir tu nombre y dónde vives.'},
+  {id:'a1-2', t:"L'alphabet et l'épellation", d:'Deletrear tu nombre, sonidos del francés, acentos (é, è, ç).'},
+  {id:'a1-3', t:'Les nombres 0–69', d:'Contar, dar tu edad y tu número de teléfono.'},
+  {id:'a1-4', t:'En classe', d:'Objetos del aula y consignas: écoutez, répétez, ouvrez le livre.'},
+  {id:'a1-5', t:'Pays et nationalités', d:'Decir de dónde eres; masculino/femenino de nacionalidades.'},
+  {id:'a1-6', t:'Les professions', d:'Hablar de tu trabajo: je suis professeur, elle est musicienne.'},
+  {id:'a1-7', t:'La famille', d:'Presentar a tu familia con mon, ma, mes.'},
+  {id:'a1-8', t:'Décrire une personne', d:'Físico y carácter: il est grand, elle est sympa.'},
+  {id:'a1-9', t:'Couleurs et vêtements', d:'Describir ropa y colores; concordancia básica del adjetivo.'},
+  {id:'a1-10',t:'Jours, mois et date', d:'Decir la fecha, tu cumpleaños y hablar de la semana.'},
+  {id:'a1-11',t:"L'heure", d:'Preguntar y decir la hora; quelle heure est-il ?'},
+  {id:'a1-12',t:'La routine quotidienne', d:'Verbos pronominales del día a día: je me lève, je me couche.'},
+  {id:'a1-13',t:'Loisirs et goûts', d:"J'aime, j'adore, je déteste + actividades y música."},
+  {id:'a1-14',t:'La nourriture', d:'Alimentos básicos y las comidas del día.'},
+  {id:'a1-15',t:'Au café / au restaurant', d:'Pedir y pagar: je voudrais un café, l\'addition s\'il vous plaît.'},
+  {id:'a1-16',t:'Faire les courses', d:'En el mercado: cantidades, un kilo de, une bouteille de.'},
+  {id:'a1-17',t:'La maison', d:'Describir tu casa y tus muebles; il y a.'},
+  {id:'a1-18',t:'La ville et les lieux', d:'Lugares de la ciudad y preposiciones de lugar.'},
+  {id:'a1-19',t:'Demander son chemin', d:'Direcciones: tournez à gauche, allez tout droit.'},
+  {id:'a1-20',t:'Les transports', d:'Tomar el metro, el bus, el tren; comprar un billete.'},
+  {id:'a1-21',t:'La météo et les saisons', d:'Il fait beau, il pleut; hablar del clima.'},
+  {id:'a1-22',t:'Le corps et la santé', d:'Partes del cuerpo y avoir mal à.'},
+  {id:'a1-23',t:'Au téléphone', d:'Llamadas simples: allô, c\'est de la part de qui ?'},
+  {id:'a1-24',t:'Inviter, accepter, refuser', d:'Tu veux venir ? Oui, avec plaisir / désolé, je ne peux pas.'},
+  {id:'a1-25',t:'Les achats et les prix', d:'Preguntar precios, tallas; ça coûte combien ?'},
+  {id:'a1-26',t:'Le passé récent et le futur proche', d:'Je viens de manger, je vais sortir.'},
+  {id:'a1-27',t:'Les vacances', d:'Planear vacaciones con el futur proche.'},
+  {id:'a1-28',t:'La possession', d:'Adjetivos posesivos completos y c\'est / ce sont.'},
+  {id:'a1-29',t:'La quantité', d:'Artículos partitivos: du pain, de la confiture, des œufs.'},
+  {id:'a1-30',t:'Bilan A1 : grande conversation', d:'Repaso integrador: simulación de un día completo en Francia.'},
+ ]},
+ A2:{name:'Survie',desc:'Contar tu pasado, comparar, dar consejos y desenvolverte en situaciones cotidianas con más matices.',topics:[
+  {id:'a2-1', t:'Raconter son week-end', d:'El passé composé con avoir y être en contexto real.'},
+  {id:'a2-2', t:"Souvenirs d'enfance", d:'El imparfait para describir cómo era tu vida antes.'},
+  {id:'a2-3', t:'Passé composé vs imparfait', d:'La pareja clave para narrar: acción vs descripción.'},
+  {id:'a2-4', t:'La biographie', d:'Contar la vida de una persona famosa francófona.'},
+  {id:'a2-5', t:'Les actualités simples', d:'Entender titulares y noticias breves.'},
+  {id:'a2-6', t:'Donner des conseils', d:'Il faut + infinitivo, devoir, tu devrais.'},
+  {id:'a2-7', t:'Chez le médecin', d:'Síntomas, citas médicas y recomendaciones.'},
+  {id:'a2-8', t:'Sentiments et émotions', d:'Expresar alegría, miedo, sorpresa, enojo.'},
+  {id:'a2-9', t:'Comparer', d:'Plus… que, moins… que, le meilleur, le pire.'},
+  {id:'a2-10',t:'Chercher un appartement', d:'Anuncios inmobiliarios, visitas, describir un piso.'},
+  {id:'a2-11',t:'La colocation', d:'Compartir piso: tareas domésticas y reglas de convivencia.'},
+  {id:'a2-12',t:'Réserver un voyage', d:'Comprar billetes, reservar en línea, fechas y horarios.'},
+  {id:'a2-13',t:"À l'hôtel", d:'Check-in, problemas con la habitación, servicios.'},
+  {id:'a2-14',t:'Raconter un voyage', d:'Narrar unas vacaciones combinando PC e imparfait.'},
+  {id:'a2-15',t:'Les recettes de cuisine', d:'El imperativo con recetas francesas auténticas.'},
+  {id:'a2-16',t:'Les achats en ligne', d:'Pedidos, devoluciones, reseñas de productos.'},
+  {id:'a2-17',t:'Chercher un emploi', d:'Anuncios de trabajo y el CV francés.'},
+  {id:'a2-18',t:"L'entretien d'embauche", d:'Responder preguntas básicas de una entrevista.'},
+  {id:'a2-19',t:'Le futur simple', d:'Hablar de planes y predicciones: je ferai, tu seras.'},
+  {id:'a2-20',t:'Projets et rêves', d:'Quand je serai grand… expresar metas con el futuro.'},
+  {id:'a2-21',t:"L'environnement", d:'Gestos ecológicos cotidianos; trier, recycler, économiser.'},
+  {id:'a2-22',t:'Les pronoms COD et COI', d:'Le, la, les, lui, leur: evitar repeticiones.'},
+  {id:'a2-23',t:'Les pronoms Y et EN', d:"J'y vais, j'en veux: dos pronombres muy franceses."},
+  {id:'a2-24',t:'Les relatifs qui, que, où', d:'Unir frases: la ville où je suis né.'},
+  {id:'a2-25',t:"L'expression du temps", d:'Depuis, il y a, pendant, en: situar en el tiempo.'},
+  {id:'a2-26',t:'La négation complexe', d:'Ne… plus, ne… jamais, ne… rien, ne… personne.'},
+  {id:'a2-27',t:'Les registres de langue', d:'Excusarse, agradecer e invitar: formal vs informal.'},
+  {id:'a2-28',t:'La technologie au quotidien', d:'Hablar de apps, redes y dispositivos.'},
+  {id:'a2-29',t:'Décrire un objet', d:'Forma, material, utilidad: ça sert à…'},
+  {id:'a2-30',t:'Bilan A2 : grande conversation', d:'Repaso integrador: contar, comparar y aconsejar.'},
+ ]},
+ B1:{name:'Seuil',desc:'Opinar, argumentar, matizar y manejar lo inesperado: el nivel umbral de la autonomía (objetivo DELF B1).',topics:[
+  {id:'b1-1', t:'Exprimer son opinion et débattre', d:'À mon avis, en revanche, néanmoins: opinar con matices.'},
+  {id:'b1-2', t:'Le subjonctif présent (découverte)', d:'Il faut que tu viennes: formación y primeros usos.'},
+  {id:'b1-3', t:'Subjonctif : sentiments et nécessité', d:'Je suis content que, il est important que…'},
+  {id:'b1-4', t:'Le conditionnel présent', d:'Cortesía, deseos y consejos: je voudrais, tu pourrais.'},
+  {id:'b1-5', t:"L'hypothèse : si + imparfait", d:'Si j\'avais le temps, je voyagerais: imaginar otras vidas.'},
+  {id:'b1-6', t:'Candidater à un emploi', d:'Ofertas de trabajo, perfil profesional, soft skills.'},
+  {id:'b1-7', t:'La lettre de motivation', d:'Estructura y fórmulas de la carta formal francesa.'},
+  {id:'b1-8', t:'Les études et la formation', d:'Sistema educativo francés, estudiar en el extranjero.'},
+  {id:'b1-9', t:"L'écologie et l'engagement", d:'Debatir sobre el cambio climático y el activismo.'},
+  {id:'b1-10',t:'La consommation responsable', d:'Argumentar sobre hábitos de consumo y publicidad.'},
+  {id:'b1-11',t:"Les médias et l'information", d:'Analizar noticias, fake news, fuentes confiables.'},
+  {id:'b1-12',t:'Le discours rapporté', d:'Il a dit que… transmitir las palabras de otros.'},
+  {id:'b1-13',t:'La concordance des temps', d:'El pasado en el discurso indirecto.'},
+  {id:'b1-14',t:'Le plus-que-parfait', d:'Narrar lo anterior al pasado: j\'avais déjà mangé.'},
+  {id:'b1-15',t:'Raconter un fait divers', d:'Escribir y contar una noticia breve estilo prensa.'},
+  {id:'b1-16',t:'Le cinéma : faire une critique', d:'Opinar sobre películas con vocabulario de crítica.'},
+  {id:'b1-17',t:'La musique francophone', d:'De Stromae a Aya Nakamura: hablar de música y gustos.'},
+  {id:'b1-18',t:'La francophonie', d:'Variedades del francés: Québec, Senegal, Bélgica, Suiza.'},
+  {id:'b1-19',t:'Voyages : imprévus et réclamations', d:'Quejarse con elegancia: retrasos, pérdidas, reembolsos.'},
+  {id:'b1-20',t:'Santé et bien-être', d:'Hábitos, estrés, deporte: dar y pedir consejos elaborados.'},
+  {id:'b1-21',t:'Les relations sociales', d:'Amistad, conflictos, vida en sociedad.'},
+  {id:'b1-22',t:'Cause et conséquence', d:'Parce que, puisque, donc, c\'est pourquoi, grâce à.'},
+  {id:'b1-23',t:'But et opposition', d:'Pour que, afin de, bien que, malgré.'},
+  {id:'b1-24',t:'Les pronoms doubles', d:'Je le lui donne: combinar pronombres como un nativo.'},
+  {id:'b1-25',t:'La voix passive', d:'Le match a été gagné par… estilo de prensa.'},
+  {id:'b1-26',t:'Le gérondif', d:'En travaillant, en écoutant: simultaneidad y manera.'},
+  {id:'b1-27',t:'La nominalisation', d:'Del verbo al sustantivo: estilo formal y periodístico.'},
+  {id:'b1-28',t:'Exprimer des regrets', d:"Le conditionnel passé: j'aurais dû, j'aurais aimé."},
+  {id:'b1-29',t:'Préparation DELF B1', d:'Formato del examen y estrategias por competencia.'},
+  {id:'b1-30',t:'Bilan B1 : grand débat', d:'Repaso integrador: debate completo con argumentación.'},
+ ]}
+};
+
+/* ---------- Fases del método ---------- */
+const PHASES=[
+ {k:'vocab', n:'Vocabulaire',  s:'Las palabras primero, con pronunciación y ejemplos reales.'},
+ {k:'dyn',   n:'Dynamiques',   s:'Juega con el vocabulario para fijarlo sin esfuerzo.'},
+ {k:'dec',   n:'Découverte',   s:'El tema en acción: obsérvalo en uso, sin teoría todavía.'},
+ {k:'app',   n:'Application',  s:'Ejercicios fáciles para ganar confianza, no para frustrarte.'},
+ {k:'oral',  n:'Expression orale', s:'Situaciones de la vida real para practicar el speaking.'},
+ {k:'ecoute',n:'Écoute',       s:'Entrena tu oído con audio en francés nativo (síntesis fr-FR).'},
+ {k:'gram',  n:'Grammaire',    s:'Ahora sí: la regla detrás de lo que ya sabes usar.'},
+];
+
+/* ---------- Contenido completo (un tema por nivel en v1) ---------- */
+const CONTENT={
+/* ============ A1-1 : Saluer et se présenter ============ */
+'a1-1':{
+ vocab:[
+  {fr:'Bonjour',ipa:'/bɔ̃.ʒuʁ/',es:'Buenos días / Hola (formal)',ex:'Bonjour, madame !'},
+  {fr:'Bonsoir',ipa:'/bɔ̃.swaʁ/',es:'Buenas tardes / noches',ex:'Bonsoir, monsieur Dupont.'},
+  {fr:'Salut',ipa:'/sa.ly/',es:'Hola / Adiós (informal)',ex:'Salut, Marie ! Ça va ?'},
+  {fr:'Au revoir',ipa:'/o ʁə.vwaʁ/',es:'Adiós',ex:'Au revoir, à demain !'},
+  {fr:'Merci beaucoup',ipa:'/mɛʁ.si bo.ku/',es:'Muchas gracias',ex:'Merci beaucoup, madame.'},
+  {fr:'De rien',ipa:'/də ʁjɛ̃/',es:'De nada',ex:'— Merci ! — De rien !'},
+  {fr:"S'il vous plaît",ipa:'/sil vu plɛ/',es:'Por favor (formal)',ex:"Un café, s'il vous plaît."},
+  {fr:"Je m'appelle…",ipa:'/ʒə ma.pɛl/',es:'Me llamo…',ex:"Je m'appelle Ulises."},
+  {fr:'Comment vous appelez-vous ?',ipa:'/kɔ.mɑ̃ vu za.ple vu/',es:'¿Cómo se llama usted?',ex:'Bonjour ! Comment vous appelez-vous ?'},
+  {fr:'Enchanté / Enchantée',ipa:'/ɑ̃.ʃɑ̃.te/',es:'Encantado / Encantada',ex:'Enchanté, madame Leroy !'},
+  {fr:'Ça va ?',ipa:'/sa va/',es:'¿Qué tal?',ex:'Salut Paul, ça va ? — Oui, ça va bien, merci.'},
+  {fr:"J'habite à…",ipa:'/ʒa.bit a/',es:'Vivo en…',ex:"J'habite à Mexico."},
+  {fr:'À bientôt',ipa:'/a bjɛ̃.to/',es:'Hasta pronto',ex:'Au revoir, à bientôt !'},
+ ],
+ match:[['Bonjour','Buenos días'],['Au revoir','Adiós'],['Merci','Gracias'],['De rien','De nada'],["Je m'appelle…",'Me llamo…'],['Enchanté','Encantado']],
+ dec:{titre:'À la cafétéria de l\'université',intro:'Lee y escucha el diálogo. Observa cómo se usan las palabras — todavía no hace falta entender la gramática.',lines:[
+  ['Claire','Bonjour ! Je m\'appelle Claire. Et vous ?'],
+  ['Diego','Bonjour, Claire. Je m\'appelle Diego. Enchanté !'],
+  ['Claire','Enchantée, Diego. Vous êtes étudiant ?'],
+  ['Diego','Oui, je suis étudiant en musique. Et vous ?'],
+  ['Claire','Moi, je suis professeure de français. Vous habitez ici ?'],
+  ['Diego','Oui, j\'habite à Lyon.'],
+  ['Claire','Eh bien, à bientôt, Diego !'],
+  ['Diego','Au revoir, Claire !'],
+ ]},
+ app:[
+  {stem:'« ____, madame ! » — « Bonjour, monsieur ! »',opts:['Bonjour','Au revoir','Merci'],a:0,fb:'Por la mañana se responde con el mismo saludo: Bonjour.'},
+  {stem:'« Je ____ Paul. »',opts:["m'appelle",'habite','suis appelle'],a:0,fb:'Para decir tu nombre: je m\'appelle + nombre.'},
+  {stem:'« — Comment vous appelez-vous ? » — « ____ »',opts:["Je m'appelle Anna.",'Ça va bien.','Au revoir.'],a:0,fb:'La pregunta pide tu nombre.'},
+  {stem:"« J'habite ____ Paris. »",opts:['à','en','au'],a:0,fb:'Con ciudades se usa à : j\'habite à Paris, à Mexico.'},
+  {stem:'« — Merci beaucoup ! » — « ____ »',opts:['De rien !','Enchanté !','Bonsoir !'],a:0,fb:'A merci se responde de rien.'},
+  {stem:'Son las 9 de la noche y llegas a una cena. Dices:',opts:['Bonsoir !','Bonjour !','Salut, ça va ?'],a:0,fb:'Después de ~18 h se usa bonsoir; con desconocidos, registro formal.'},
+ ],
+ oral:[
+  {t:'En la recepción de un hotel en París',ctx:'Llegas a tu hotel. Es una situación formal: usa vous.',mision:['Saluda según la hora del día','Di tu nombre completo','Agradece y despídete'],modele:'— Bonsoir, madame.\n— Bonsoir, monsieur. Comment vous appelez-vous ?\n— Je m\'appelle Diego Ramírez.\n— Très bien… voici votre clé. Chambre 12.\n— Merci beaucoup, madame. Bonne soirée !',tip:'Grábate con tu celular y compárate con el modelo. Repite hasta que fluya.'},
+  {t:'Primer día de clase de francés',ctx:'Te sientas junto a otro estudiante de tu edad. Situación informal: usa tu.',mision:['Saluda de manera informal','Pregunta su nombre: « Tu t\'appelles comment ? »','Di dónde vives'],modele:'— Salut ! Ça va ?\n— Oui, ça va ! Tu t\'appelles comment ?\n— Je m\'appelle Sofía. Et toi ?\n— Moi, c\'est Karim. J\'habite à Buenavista. Et toi ?\n— Moi aussi ! À bientôt, Karim !',tip:'Practica con un compañero: uno es Sofía, el otro Karim, y luego cambien de rol con sus nombres reales.'},
+  {t:'Un amigo te presenta a alguien en un café',ctx:'Tu amigo francés te presenta a su colega. Semi-formal.',mision:['Responde a la presentación con « Enchanté(e) »','Pregunta « Ça va ? »','Despídete con « À bientôt »'],modele:'— Diego, je te présente Claire.\n— Enchanté, Claire !\n— Enchantée ! Ça va ?\n— Oui, très bien, merci. Et vous ?\n— Ça va bien !\n— À bientôt, Claire !',tip:'Ojo: enchanté si eres hombre, enchantée si eres mujer — se escribe distinto pero suena igual.'},
+ ],
+ ecoute:[
+  {audio:'Bonsoir, madame Martin !',stem:'¿Qué saludo escuchaste?',opts:['Bonsoir','Bonjour','Salut'],a:0},
+  {audio:"Je m'appelle Sophie et j'habite à Marseille.",stem:'¿Dónde vive Sophie?',opts:['En Marsella','En París','En Lyon'],a:0},
+  {audio:'Salut Thomas ! Ça va ? — Oui, ça va très bien, merci !',stem:'¿Cómo está Thomas?',opts:['Muy bien','Mal','No lo dice'],a:0},
+  {audio:'Enchanté, monsieur. Moi, je m\'appelle Pierre Durand.',stem:'¿Qué frase escuchaste exactamente?',opts:['Enchanté, monsieur.','Enchanté, madame.','Au revoir, monsieur.'],a:0},
+ ],
+ gram:{html:`
+  <h4>1. El verbo <em>s'appeler</em> (llamarse)</h4>
+  <p>Ya lo usaste toda la lección sin saberlo. Es un verbo pronominal: el pronombre cambia con la persona.</p>
+  <table><tr><th>Persona</th><th>Forma</th></tr>
+  <tr><td>je</td><td>je <b>m'appelle</b></td></tr>
+  <tr><td>tu</td><td>tu <b>t'appelles</b></td></tr>
+  <tr><td>il / elle</td><td>il/elle <b>s'appelle</b></td></tr>
+  <tr><td>vous</td><td>vous <b>vous appelez</b></td></tr></table>
+  <h4>2. El verbo <em>être</em> (ser / estar)</h4>
+  <table><tr><th>Persona</th><th>Forma</th></tr>
+  <tr><td>je</td><td>je <b>suis</b></td></tr>
+  <tr><td>tu</td><td>tu <b>es</b></td></tr>
+  <tr><td>il / elle</td><td>il/elle <b>est</b></td></tr>
+  <tr><td>vous</td><td>vous <b>êtes</b></td></tr></table>
+  <h4>3. ¿Tu o vous?</h4>
+  <p><b>Tu</b> = informal (amigos, familia, compañeros). <b>Vous</b> = formal (desconocidos, profesores, situaciones profesionales) y también plural.</p>
+  <div class="tip"><b>Astuce :</b> en Francia, ante la duda, empieza con <b>vous</b>. La otra persona te dirá « on peut se tutoyer » si quiere pasar al tu.</div>`,
+ ex:[
+  {stem:'« Vous ____ professeur ? » (être)',opts:['êtes','es','est'],a:0,fb:'Vous → êtes.'},
+  {stem:'« Elle ____ Marie. »',opts:["s'appelle","t'appelles","m'appelle"],a:0,fb:'Il / elle → s\'appelle.'},
+  {stem:'« Tu ____ étudiant ? »',opts:['es','est','êtes'],a:0,fb:'Tu → es (sin t final sonora).'},
+  {stem:'¿A quién le hablas de « vous »?',opts:['A tu nuevo jefe','A tu mejor amigo','A tu hermano menor'],a:0,fb:'Vous = formal: jefes, desconocidos, profesores.'},
+  {stem:"« J'____ à Guadalajara. »",opts:['habite','habites','habitez'],a:0,fb:'Je → habite. Como empieza con vocal: j\'habite.'},
+ ]},
+},
+
+/* ============ A2-1 : Raconter son week-end ============ */
+'a2-1':{
+ vocab:[
+  {fr:'faire la grasse matinée',ipa:'/fɛʁ la ɡʁɑs ma.ti.ne/',es:'quedarse durmiendo hasta tarde',ex:'Le dimanche, je fais la grasse matinée.'},
+  {fr:'se promener',ipa:'/sə pʁɔm.ne/',es:'pasear',ex:'Nous nous sommes promenés au parc.'},
+  {fr:'rendre visite à',ipa:'/ʁɑ̃dʁ vi.zit a/',es:'visitar (a una persona)',ex:"J'ai rendu visite à mes grands-parents."},
+  {fr:'faire les courses',ipa:'/fɛʁ le kuʁs/',es:'hacer las compras',ex:'Samedi matin, on a fait les courses.'},
+  {fr:'regarder une série',ipa:'/ʁə.ɡaʁ.de yn se.ʁi/',es:'ver una serie',ex:"J'ai regardé une série toute la soirée."},
+  {fr:'sortir avec des amis',ipa:'/sɔʁ.tiʁ/',es:'salir con amigos',ex:'Elle est sortie avec ses amis samedi soir.'},
+  {fr:'se reposer',ipa:'/sə ʁə.po.ze/',es:'descansar',ex:'Je me suis bien reposé ce week-end.'},
+  {fr:'ranger la maison',ipa:'/ʁɑ̃.ʒe/',es:'ordenar la casa',ex:'Il a rangé toute la maison dimanche.'},
+  {fr:'assister à un concert',ipa:'/a.sis.te/',es:'asistir a un concierto',ex:"J'ai assisté à un concert de jazz."},
+  {fr:'rentrer tard',ipa:'/ʁɑ̃.tʁe taʁ/',es:'volver tarde a casa',ex:'Nous sommes rentrés tard dimanche soir.'},
+ ],
+ match:[['faire la grasse matinée','dormir hasta tarde'],['se reposer','descansar'],['ranger','ordenar'],['rendre visite à','visitar a alguien'],['rentrer','volver a casa'],['les courses','las compras']],
+ dec:{titre:'Lundi matin, au bureau',intro:'Dos colegas se cuentan el fin de semana. Fíjate en las formas de los verbos en pasado — solo observa, la regla viene al final.',lines:[
+  ['Inès','Salut Karim ! Tu as passé un bon week-end ?'],
+  ['Karim',"Excellent ! Samedi, j'ai assisté à un concert de jazz, et dimanche, j'ai fait la grasse matinée. Et toi ?"],
+  ['Inès','Moi, je suis allée chez mes parents. Nous nous sommes promenés au bord du lac et nous avons beaucoup mangé !'],
+  ['Karim','Tu es rentrée tard ?'],
+  ['Inès','Oui, je suis rentrée à minuit. Je suis fatiguée ce matin !'],
+  ['Karim','Courage ! La semaine commence…'],
+ ]},
+ app:[
+  {stem:"« Samedi, j'____ un film. » (regarder)",opts:['ai regardé','suis regardé','a regardé'],a:0,fb:'Regarder se conjuga con avoir: j\'ai regardé.'},
+  {stem:'« Elle ____ allée au marché. »',opts:['est','a','es'],a:0,fb:'Aller va con être: elle est allée.'},
+  {stem:'« Nous ____ les courses samedi matin. »',opts:['avons fait','sommes fait','avons faire'],a:0,fb:'Faire → avoir + fait: nous avons fait.'},
+  {stem:'« Ils ____ tard dimanche soir. »',opts:['sont rentrés','ont rentré','sont rentré'],a:0,fb:'Rentrer va con être y concuerda: ils sont rentrés.'},
+  {stem:"« Tu ____ bien reposé ce week-end ? »",opts:["t'es",'as','es'],a:0,fb:'Se reposer es pronominal → être: tu t\'es reposé.'},
+  {stem:"« J'ai ____ visite à ma tante. »",opts:['rendu','rendre','rendé'],a:0,fb:'El participio de rendre es rendu.'},
+ ],
+ oral:[
+  {t:'Lunes en la oficina',ctx:'Un colega te pregunta por tu fin de semana. Cuéntale el tuyo de verdad.',mision:['Menciona al menos 3 actividades reales','Usa una con avoir y una con être','Pregúntale por el suyo: « Et toi ? »'],modele:'— Tu as passé un bon week-end ?\n— Oui, super ! Samedi, j\'ai fait les courses et le soir, je suis sorti avec des amis. Dimanche, j\'ai fait la grasse matinée. Et toi ?',tip:'Empieza siempre con el día: samedi…, dimanche… Le da estructura natural a tu relato.'},
+  {t:'Llamada a un amigo después de un concierto',ctx:'Fuiste a ver a tu banda favorita. Llamas a tu mejor amigo para contarle.',mision:['Di a qué concierto asististe','Cuenta a qué hora volviste','Expresa cómo te sentiste: « C\'était génial ! »'],modele:'— Allô ? Devine quoi : hier soir, j\'ai assisté au concert de Stromae !\n— Non ! C\'était comment ?\n— C\'était génial ! Je suis rentré à deux heures du matin.',tip:'C\'était + adjetivo (génial, super, incroyable) es la fórmula estrella para reaccionar al pasado.'},
+  {t:'Entrevista rápida',ctx:'Practica en espejo o con un compañero: respondan por turnos sin leer.',mision:['« Qu\'est-ce que tu as fait samedi ? »','« Tu es sorti(e) ce week-end ? »','« À quelle heure tu es rentré(e) ? »'],modele:'— Qu\'est-ce que tu as fait samedi ?\n— Le matin, j\'ai rangé la maison, et l\'après-midi, je me suis promené au parc.',tip:'Responde rápido aunque te equivoques: la fluidez primero, la perfección después.'},
+ ],
+ ecoute:[
+  {audio:'Samedi soir, je suis sortie avec mes amies et nous avons dansé toute la nuit.',stem:'¿Qué hizo el sábado por la noche?',opts:['Salió a bailar con amigas','Vio una serie en casa','Ordenó la casa'],a:0},
+  {audio:"Dimanche, Paul a rangé la maison et ensuite il s'est reposé.",stem:'¿Quién ordenó la casa?',opts:['Paul','Marie','Nadie'],a:0},
+  {audio:'Nous avons rendu visite à notre tante à Toulouse. Nous sommes rentrés très tard.',stem:'¿A quién visitaron?',opts:['A su tía','A su abuela','A un amigo'],a:0},
+ ],
+ gram:{html:`
+  <h4>1. El passé composé: la fórmula</h4>
+  <p>Para contar acciones terminadas del pasado: <b>avoir o être (en presente) + participio pasado</b>.</p>
+  <table><tr><th>Tipo</th><th>Ejemplo</th></tr>
+  <tr><td>con avoir (la mayoría)</td><td>j'<b>ai regardé</b>, nous <b>avons fait</b></td></tr>
+  <tr><td>con être (movimiento)</td><td>je <b>suis allé(e)</b>, ils <b>sont rentrés</b></td></tr>
+  <tr><td>con être (pronominales)</td><td>je <b>me suis reposé(e)</b></td></tr></table>
+  <h4>2. ¿Qué verbos van con être?</h4>
+  <p>Los de movimiento o cambio de estado: <b>aller, venir, arriver, partir, entrer, sortir, monter, descendre, rentrer, retourner, rester, tomber, naître, mourir</b> — y todos los pronominales (se lever, se promener…).</p>
+  <h4>3. La concordancia con être</h4>
+  <p>Con être, el participio concuerda con el sujeto: elle est rentré<b>e</b>, ils sont rentré<b>s</b>, elles sont rentré<b>es</b>.</p>
+  <div class="tip"><b>Astuce :</b> con avoir, el participio normalmente <b>no</b> cambia: elle a regardé, ils ont regardé.</div>`,
+ ex:[
+  {stem:'« Marie ____ partie à huit heures. »',opts:['est','a','es'],a:0,fb:'Partir → être: elle est partie.'},
+  {stem:"« Nous ____ une pizza hier soir. » (manger)",opts:['avons mangé','sommes mangé','avons manger'],a:0,fb:'Manger → avoir + mangé.'},
+  {stem:'« Elles sont ____ au cinéma. » (aller)',opts:['allées','allé','allés'],a:0,fb:'Elles (femenino plural) → allées.'},
+  {stem:'« Je ____ levé très tôt. » (se lever)',opts:['me suis','suis','ai'],a:0,fb:'Pronominal → je me suis levé.'},
+  {stem:'¿Cuál es el participio de « faire »?',opts:['fait','fais','fairé'],a:0,fb:'Faire → fait (irregular, hay que memorizarlo).'},
+ ]},
+},
+
+/* ============ B1-1 : Exprimer son opinion ============ */
+'b1-1':{
+ vocab:[
+  {fr:'à mon avis',ipa:'/a mɔ̃.n‿a.vi/',es:'en mi opinión',ex:'À mon avis, ce film est génial.'},
+  {fr:'je trouve que',ipa:'/ʒə tʁuv kə/',es:'me parece que',ex:'Je trouve que cette chanson est magnifique.'},
+  {fr:'en revanche',ipa:'/ɑ̃ ʁə.vɑ̃ʃ/',es:'en cambio (escrito/formal)',ex:'Le film est long ; en revanche, il est passionnant.'},
+  {fr:'par contre',ipa:'/paʁ kɔ̃tʁ/',es:'en cambio (oral)',ex:"J'aime le rock ; par contre, je déteste le reggaeton."},
+  {fr:'néanmoins',ipa:'/ne.ɑ̃.mwɛ̃/',es:'sin embargo',ex:"C'est cher ; néanmoins, la qualité est excellente."},
+  {fr:"être d'accord avec",ipa:'/ɛtʁ da.kɔʁ/',es:'estar de acuerdo con',ex:'Je suis d\'accord avec toi.'},
+  {fr:"ne pas être du tout d'accord",ipa:'',es:'no estar para nada de acuerdo',ex:'Je ne suis pas du tout d\'accord avec cette décision.'},
+  {fr:'ça dépend',ipa:'/sa de.pɑ̃/',es:'depende',ex:'— Tu préfères le cinéma ou les séries ? — Ça dépend.'},
+  {fr:'avoir raison / avoir tort',ipa:'/a.vwaʁ ʁɛ.zɔ̃ ∙ tɔʁ/',es:'tener razón / estar equivocado',ex:'Tu as raison, c\'est une excellente idée.'},
+  {fr:'convaincre',ipa:'/kɔ̃.vɛ̃kʁ/',es:'convencer',ex:'Il a réussi à me convaincre.'},
+ ],
+ match:[['à mon avis','en mi opinión'],['néanmoins','sin embargo'],['en revanche','en cambio'],['avoir tort','estar equivocado'],['ça dépend','depende'],['convaincre','convencer']],
+ dec:{titre:'Mini-débat : « Faut-il interdire les téléphones au lycée ? »',intro:'Dos estudiantes debaten. Observa cómo introducen, matizan y oponen sus opiniones.',lines:[
+  ['Léa','À mon avis, il faut limiter les téléphones en classe. Je trouve que les élèves sont trop distraits.'],
+  ['Hugo','Je ne suis pas du tout d\'accord ! Les téléphones font partie de notre vie.'],
+  ['Léa','En revanche, je pense qu\'on peut les utiliser pour certaines activités pédagogiques.'],
+  ['Hugo','Là, tu as raison. Néanmoins, il faut des règles claires.'],
+  ['Léa','Tout à fait. Au fond, ça dépend de chaque situation.'],
+  ['Hugo','Tu vois ? Tu as réussi à me convaincre… un peu !'],
+ ]},
+ app:[
+  {stem:'« ____, ce restaurant est excellent. »',opts:['À mon avis','En revanche','Néanmoins'],a:0,fb:'Para introducir tu opinión: à mon avis.'},
+  {stem:'« Je trouve ____ ce livre est passionnant. »',opts:['que','qui','quoi'],a:0,fb:'Je trouve que + frase completa.'},
+  {stem:'« Il fait froid ; ____, le ciel est magnifique. »',opts:['en revanche','à mon avis','d\'accord'],a:0,fb:'Para oponer dos ideas: en revanche.'},
+  {stem:'« Tu as ____ : c\'est une excellente idée ! »',opts:['raison','tort','avis'],a:0,fb:'Avoir raison = tener razón.'},
+  {stem:"« Je suis d'accord ____ toi. »",opts:['avec','à','de'],a:0,fb:'Être d\'accord avec quelqu\'un.'},
+  {stem:'« C\'est un bon film ; ____, la fin est décevante. »',opts:['néanmoins','parce que','donc'],a:0,fb:'Néanmoins introduce una reserva, un "pero".'},
+ ],
+ oral:[
+  {t:'Debate con un amigo: ¿streaming o cine?',ctx:'Tu amigo dice que el cine va a desaparecer. Tú no estás de acuerdo (o sí — decide tu postura).',mision:['Da tu opinión con « à mon avis » o « je trouve que »','Opón un argumento con « en revanche »','Concede algo: « tu as raison, néanmoins… »'],modele:'— À mon avis, le streaming va remplacer le cinéma.\n— Je ne suis pas d\'accord ! Je trouve que l\'expérience du cinéma est unique. En revanche, c\'est vrai que c\'est cher.\n— Tu as raison. Néanmoins, rien ne remplace un grand écran !',tip:'En un debate real, conceder un punto (« tu as raison sur ce point ») te hace más convincente, no más débil.'},
+  {t:'Reunión de trabajo',ctx:'Tu equipo propone trabajar 100% a distancia. Da tu opinión con matices, registro formal.',mision:['Introduce tu postura con cortesía','Da un argumento a favor y uno en contra','Concluye con « ça dépend de… »'],modele:'— À mon avis, le télétravail a beaucoup d\'avantages : on gagne du temps. En revanche, je trouve que la communication est plus difficile. Au fond, ça dépend des équipes.',tip:'En contexto profesional, evita « je ne suis pas du tout d\'accord » directo; suaviza con « je ne suis pas tout à fait d\'accord ».'},
+  {t:'Defiende tu música',ctx:'Alguien dice que tu género musical favorito « no es música de verdad ». Defiéndelo en 1 minuto.',mision:['Expresa desacuerdo claro','Da 2 argumentos con « je trouve que »','Intenta convencer: termina con una invitación a escuchar algo'],modele:'— Je ne suis pas du tout d\'accord ! Je trouve que le jazz demande une technique incroyable. Écoute ce morceau et après, on en reparle !',tip:'Pasión + estructura = persuasión. Cronometra tu minuto.'},
+ ],
+ ecoute:[
+  {audio:'Je pense que tu as raison, mais ça dépend du contexte, non ?',stem:'¿Qué actitud expresa la persona?',opts:['Acuerdo con matiz','Desacuerdo total','Indiferencia'],a:0},
+  {audio:"Je ne suis pas du tout d'accord avec cette décision ! C'est une erreur.",stem:'¿Qué expresa?',opts:['Desacuerdo total','Acuerdo entusiasta','Una duda'],a:0},
+  {audio:"À mon avis, c'est la meilleure solution ; néanmoins, il faut être prudents.",stem:'La persona da su opinión…',opts:['…con una reserva','…sin ninguna duda','…en contra de la solución'],a:0},
+ ],
+ gram:{html:`
+  <h4>1. Opinión afirmativa → indicativo</h4>
+  <p>Después de <b>je pense que, je crois que, je trouve que</b> (afirmativos), el verbo va en <b>indicativo</b>:</p>
+  <p>→ Je pense qu'il <b>a</b> raison. · Je trouve que ce film <b>est</b> génial.</p>
+  <h4>2. Opinión negativa → subjuntivo</h4>
+  <p>En la forma negativa, la certeza desaparece y aparece el <b>subjuntivo</b>:</p>
+  <p>→ Je ne pense pas que ce <b>soit</b> une bonne idée. · Je ne crois pas qu'elle <b>vienne</b>.</p>
+  <table><tr><th>Afirmativo (indicativo)</th><th>Negativo (subjuntivo)</th></tr>
+  <tr><td>Je pense que c'<b>est</b> vrai.</td><td>Je ne pense pas que ce <b>soit</b> vrai.</td></tr>
+  <tr><td>Je crois qu'il <b>peut</b> venir.</td><td>Je ne crois pas qu'il <b>puisse</b> venir.</td></tr></table>
+  <h4>3. Conectores de oposición</h4>
+  <p><b>en revanche</b> (formal/escrito) y <b>par contre</b> (oral) oponen dos ideas. <b>Néanmoins</b> introduce una reserva: "sin embargo". <b>Mais</b> es el comodín universal.</p>
+  <div class="tip"><b>Astuce :</b> este es tu primer contacto con el subjuntivo — lo estudiaremos a fondo en los temas 2 y 3. Por ahora, memoriza <b>ce soit</b> y <b>il/elle puisse</b> como fórmulas.</div>`,
+ ex:[
+  {stem:"« Je pense qu'il ____ raison. »",opts:['a','ait','aie'],a:0,fb:'Pensar afirmativo → indicativo: il a.'},
+  {stem:'« Je ne pense pas que ce ____ une bonne idée. »',opts:['soit','est','es'],a:0,fb:'Negativo → subjuntivo: ce soit.'},
+  {stem:'« Je trouve que cette chanson ____ magnifique. »',opts:['est','soit','sont'],a:0,fb:'Je trouve que (afirmativo) → indicativo: est.'},
+  {stem:"« Je ne crois pas qu'elle ____ là. »",opts:['soit','est','sera'],a:0,fb:'Je ne crois pas que → subjuntivo: soit.'},
+  {stem:'En un correo formal, para oponer dos ideas eliges:',opts:['en revanche','par contre','bof'],a:0,fb:'En revanche es el conector de registro formal/escrito.'},
+ ]},
+},
+};
+
+/* ================= ESTADO Y UTILIDADES ================= */
+const store={
+ _m:{},
+ get(k){try{return localStorage.getItem(k)??this._m[k]??null}catch(e){return this._m[k]??null}},
+ set(k,v){try{localStorage.setItem(k,v)}catch(e){} this._m[k]=v}
+};
+let state=JSON.parse(store.get('allonsy')||'{"xp":0,"done":{}}');
+function save(){store.set('allonsy',JSON.stringify(state));renderXP()}
+function renderXP(){document.getElementById('xpBox').textContent=state.xp+' XP'}
+function addXP(n){state.xp+=n;save()}
+function phaseDone(tid,k){return !!(state.done[tid]&&state.done[tid][k])}
+function markDone(tid,k){state.done[tid]=state.done[tid]||{};if(!state.done[tid][k]){state.done[tid][k]=true;addXP(15)}save()}
+function topicProgress(tid){const d=state.done[tid]||{};return PHASES.filter(p=>d[p.k]).length}
+function levelProgress(lv){const ts=LEVELS[lv].topics;let done=0,total=ts.length*PHASES.length;ts.forEach(t=>done+=topicProgress(t.id));return Math.round(done/total*100)}
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+
+/* ---------- audio fr-FR ---------- */
+let frVoice=null;
+function loadVoices(){
+ const v=speechSynthesis.getVoices().filter(x=>x.lang.startsWith('fr'));
+ if(!v.length){frVoice=null;return}
+ /* ranking: voces neuronales/naturales primero */
+ const score=x=>{
+  const n=x.name.toLowerCase();let s=0;
+  if(n.includes('natural'))s+=100;           // Edge neuronal (Denise, Henri...)
+  if(n.includes('online'))s+=40;
+  if(n.includes('denise')||n.includes('vivienne')||n.includes('eloise'))s+=30;
+  if(n.includes('google'))s+=50;             // Chrome desktop
+  if(n.includes('amélie')||n.includes('amelie')||n.includes('thomas')||n.includes('audrey'))s+=45; // Apple
+  if(n.includes('siri'))s+=45;
+  if(x.lang==='fr-FR')s+=10;
+  if(x.localService===false)s+=15;           // las remotas suelen ser mejores
+  return s;
+ };
+ frVoice=v.sort((a,b)=>score(b)-score(a))[0];
+}
+if('speechSynthesis' in window){loadVoices();speechSynthesis.onvoiceschanged=loadVoices}
+function djb2(s){s=s.replace(/\s+/g,' ').trim();let h=5381;for(let i=0;i<s.length;i++){h=((h*33)^s.charCodeAt(i))>>>0}return h.toString(36)}
+let audioEl=null;
+function speak(t,rate){
+ /* 1º intenta MP3 neuronal pre-generado (carpeta /audio); si no existe, usa la voz del navegador */
+ window.speechSynthesis&&speechSynthesis.cancel();
+ if(audioEl){audioEl.pause();audioEl=null}
+ const a=new Audio('audio/'+djb2(t)+'.mp3');
+ a.playbackRate=(rate&&rate<0.85)?0.72:1;
+ try{a.preservesPitch=true}catch(e){}
+ a.onerror=()=>speakTTS(t,rate);
+ a.play().catch(()=>speakTTS(t,rate));
+ audioEl=a;
+}
+function speakTTS(t,rate){
+ if(!('speechSynthesis' in window)){alert('Tu navegador no soporta síntesis de voz.');return}
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(t);
+ u.lang='fr-FR';if(frVoice)u.voice=frVoice;u.rate=rate||0.92;
+ speechSynthesis.speak(u);
+}
+
+/* ================= VISTAS ================= */
+const app=document.getElementById('app');
+
+function showHome(){
+ window.speechSynthesis&&speechSynthesis.cancel();
+ let h=`<section class="hero">
+  <div class="eyebrow">méthode · vocabulaire d'abord, grammaire ensuite</div>
+  <h1>Le français,<br><em>pas à pas</em></h1>
+  <p>Primero las palabras, luego el uso, al final la regla. Tres niveles, noventa temas, una sola dirección: tu B1.</p>
+ </section>
+ <div class="methode">
+  <div class="titre">Ligne 7 · El método de cada tema</div>
+  <div class="ligne">${PHASES.map((p,i)=>`<div class="station"><div class="dot">${i+1}</div><div class="lbl">${p.n}</div></div>`).join('')}</div>
+ </div>
+ <div class="grid3">`;
+ for(const lv in LEVELS){
+  const L=LEVELS[lv],pct=levelProgress(lv);
+  h+=`<div class="lvl" onclick="showLevel('${lv}')">
+   <div class="tag">${lv}</div><h3>${L.name}</h3><p>${L.desc}</p>
+   <div class="prog"><i style="width:${pct}%"></i></div>
+   <div class="pct">${pct}% · 30 temas</div></div>`;
+ }
+ h+='</div>';
+ app.innerHTML=h;window.scrollTo(0,0);
+}
+
+function showLevel(lv){
+ const L=LEVELS[lv];
+ let h=`<div class="crumb"><a onclick="showHome()">Inicio</a> / ${lv}</div>
+ <div class="lvl-head"><h2>${lv} · ${L.name}</h2><p>${L.desc}</p></div><div class="topics">`;
+ L.topics.forEach((t,i)=>{
+  const has=!!CONTENT[t.id];
+  const prog=topicProgress(t.id);
+  h+=`<div class="topic ${has?'open':''}" ${has?`onclick="showTopic('${t.id}',0)"`:''}>
+   <div class="num">${String(i+1).padStart(2,'0')}</div>
+   <div><h4>${t.t}</h4><p>${t.d}</p>
+   ${has?`<span class="go">→ disponible${prog?` · ${prog}/7 fases`:''}</span>`:`<span class="soon">en préparation</span>`}
+   </div></div>`;
+ });
+ h+='</div>';
+ app.innerHTML=h;window.scrollTo(0,0);
+}
+
+function findTopic(tid){for(const lv in LEVELS){const t=LEVELS[lv].topics.find(x=>x.id===tid);if(t)return{lv,t}}return null}
+
+function showTopic(tid,phaseIdx){
+ window.speechSynthesis&&speechSynthesis.cancel();
+ const {lv,t}=findTopic(tid),c=CONTENT[tid],ph=PHASES[phaseIdx];
+ let h=`<div class="crumb"><a onclick="showHome()">Inicio</a> / <a onclick="showLevel('${lv}')">${lv}</a> / ${t.t}</div>
+ <div class="t-head"><div class="lvl-tag">${lv} · LEÇON</div><h2>${t.t}</h2><p>${t.d}</p></div>
+ <div class="ligne" style="max-width:760px;margin:0 auto">${PHASES.map((p,i)=>{
+   const cls=(i===phaseIdx?'now ':'')+(phaseDone(tid,p.k)?'done ':'')+'click';
+   return `<div class="station ${cls}" onclick="showTopic('${tid}',${i})"><div class="dot">${phaseDone(tid,p.k)?'✓':i+1}</div><div class="lbl">${p.n}</div></div>`;
+  }).join('')}</div>
+ <div class="phase-box"><h3>${phaseIdx+1}. ${ph.n}</h3><div class="sub">${ph.s}</div>
+ <div id="phaseContent">${renderPhase(tid,c,ph.k)}</div>
+ <div class="done-row">
+  <button class="btn ${phaseDone(tid,ph.k)?'btn-ok':'btn-p'}" onclick="markDone('${tid}','${ph.k}');showTopic('${tid}',${phaseIdx})">${phaseDone(tid,ph.k)?'✓ Fase completada':'Marcar fase como completada (+15 XP)'}</button>
+ </div>
+ <div class="nav-phases">
+  ${phaseIdx>0?`<button class="btn btn-g" onclick="showTopic('${tid}',${phaseIdx-1})">← ${PHASES[phaseIdx-1].n}</button>`:'<span></span>'}
+  ${phaseIdx<6?`<button class="btn btn-p" onclick="showTopic('${tid}',${phaseIdx+1})">${PHASES[phaseIdx+1].n} →</button>`:`<button class="btn btn-ok" onclick="showLevel('${lv}')">Terminar leçon ✓</button>`}
+ </div></div>`;
+ app.innerHTML=h;window.scrollTo(0,0);
+ if(ph.k==='dyn')initMatch(tid,c.match);
+}
+
+/* ================= RENDER DE FASES ================= */
+function renderPhase(tid,c,k){
+ if(k==='vocab')return `<div class="vgrid">${c.vocab.map(v=>`
+  <div class="vcard"><div class="row"><div><div class="fr">${v.fr}</div>${v.ipa?`<div class="ipa">${v.ipa}</div>`:''}</div>
+  <button class="speak" onclick="speak('${v.fr.replace(/'/g,"\\'")}')">🔊</button></div>
+  <div class="es">${v.es}</div><div class="ex">${v.ex} <button class="speak" style="padding:2px 8px;font-size:.75rem" onclick="speak('${v.ex.replace(/'/g,"\\'")}')">🔊</button></div></div>`).join('')}`;
+
+ if(k==='dyn')return `<p style="margin-bottom:18px;font-size:.92rem;color:var(--ink-soft)">Une los pares francés ↔ español. Toca una tarjeta de cada columna.</p><div class="match" id="matchGame"></div><p class="fb good" id="matchWin" style="font-size:1rem">🎉 Parfait ! Pares completados.</p>`;
+
+ if(k==='dec'){const d=c.dec;return `<h4 class="display" style="font-size:1.15rem;margin-bottom:6px">${d.titre}</h4>
+  <p style="font-size:.88rem;color:var(--ink-soft);margin-bottom:18px">${d.intro}</p>
+  <div style="margin-bottom:18px"><button class="btn btn-p" onclick="speak('${d.lines.map(l=>l[1]).join(' ').replace(/'/g,"\\'")}' ,0.88)">▶ Escuchar todo el diálogo</button></div>
+  <div class="dlg">${d.lines.map(l=>`<div class="dline"><div class="who">${l[0]}</div><div class="bub">${l[1]} <button class="speak" style="padding:2px 8px;font-size:.72rem" onclick="speak('${l[1].replace(/'/g,"\\'")}')">🔊</button></div></div>`).join('')}</div>`}
+
+ if(k==='app')return c.app.map((q,i)=>quiz(q,'app'+i)).join('');
+
+ if(k==='oral')return c.oral.map(s=>`<div class="sit"><h4>${s.t}</h4><div class="ctx">${s.ctx}</div>
+  <strong style="font-size:.82rem;letter-spacing:.06em;color:var(--blue-700)">TU MISIÓN</strong>
+  <ul>${s.mision.map(m=>`<li>${m}</li>`).join('')}</ul>
+  <div class="modele">${s.modele}</div>
+  <button class="btn btn-g" onclick="speak('${s.modele.replace(/\n/g,' ').replace(/—/g,'').replace(/'/g,"\\'")}',0.88)">▶ Escuchar el modelo</button>
+  <p style="font-size:.8rem;color:var(--ink-soft);margin-top:10px">💡 ${s.tip}</p></div>`).join('');
+
+ if(k==='ecoute')return `<p style="font-size:.88rem;color:var(--ink-soft);margin-bottom:18px">Escucha sin leer. Puedes repetir el audio las veces que necesites; usa la velocidad lenta si hace falta.</p>`+
+  c.ecoute.map((q,i)=>`<div class="lq"><div class="play-row">
+   <button class="btn btn-p" onclick="speak('${q.audio.replace(/'/g,"\\'")}',0.9)">▶ Écouter</button>
+   <button class="btn btn-g" onclick="speak('${q.audio.replace(/'/g,"\\'")}',0.7)">🐢 Lento</button>
+   <span>Audio ${i+1}</span></div>${quiz(q,'ec'+i)}</div>`).join('');
+
+ if(k==='gram')return `<div class="gram">${c.gram.html}</div><h4 class="display" style="font-size:1.15rem;margin:28px 0 16px">À toi ! Ejercicios</h4>`+c.gram.ex.map((q,i)=>quiz(q,'gr'+i)).join('');
+ return '';
+}
+
+/* ---------- componente quiz ---------- */
+let QUIZ={};
+function quiz(q,id){
+ QUIZ[id]=q;
+ const opts=q.opts.map((o,i)=>({o,i})).sort(()=>Math.random()-0.5);
+ return `<div class="q" id="q-${id}"><div class="stem">${q.stem}</div>
+ <div class="opts">${opts.map(x=>`<div class="opt" onclick="answer('${id}',${x.i},this)">${x.o}</div>`).join('')}</div>
+ <div class="fb" id="fb-${id}"></div></div>`;
+}
+function answer(id,i,el){
+ const q=QUIZ[id],box=document.getElementById('q-'+id),fb=document.getElementById('fb-'+id);
+ const opts=box.querySelectorAll('.opt');
+ if(i===q.a){
+  opts.forEach(o=>o.classList.add('lock'));el.classList.add('ok');
+  fb.className='fb show good';fb.textContent='✓ Très bien ! '+(q.fb||'');addXP(5);
+ }else{
+  el.classList.add('bad','lock');
+  fb.className='fb show no';fb.textContent='Essaie encore — inténtalo otra vez.';
+ }
+}
+
+/* ---------- juego de matching ---------- */
+function initMatch(tid,pairs){
+ const game=document.getElementById('matchGame');if(!game)return;
+ const fr=pairs.map((p,i)=>({t:p[0],i})).sort(()=>Math.random()-0.5);
+ const es=pairs.map((p,i)=>({t:p[1],i})).sort(()=>Math.random()-0.5);
+ game.innerHTML=`<div class="mcol">${fr.map(x=>`<div class="mitem" data-side="fr" data-i="${x.i}">${x.t}</div>`).join('')}</div>
+ <div class="mcol">${es.map(x=>`<div class="mitem" data-side="es" data-i="${x.i}">${x.t}</div>`).join('')}</div>`;
+ let sel=null,found=0;
+ game.querySelectorAll('.mitem').forEach(it=>{
+  it.onclick=()=>{
+   if(it.classList.contains('ok'))return;
+   if(it.dataset.side==='fr')speak(it.textContent);
+   if(!sel){sel=it;it.classList.add('sel');return}
+   if(sel===it){it.classList.remove('sel');sel=null;return}
+   if(sel.dataset.side===it.dataset.side){sel.classList.remove('sel');sel=it;it.classList.add('sel');return}
+   if(sel.dataset.i===it.dataset.i){
+    sel.classList.remove('sel');sel.classList.add('ok');it.classList.add('ok');sel=null;found++;addXP(5);
+    if(found===pairs.length)document.getElementById('matchWin').classList.add('show');
+   }else{
+    it.classList.add('bad');const s=sel;s.classList.remove('sel');
+    setTimeout(()=>{it.classList.remove('bad')},350);sel=null;
+   }
+  };
+ });
+}
+
+/* ================= INIT ================= */
+renderXP();showHome();
+
+</script>
+</body>
+</html>
