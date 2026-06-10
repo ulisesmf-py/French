@@ -217,6 +217,28 @@ footer .mono{color:var(--blue-500)}
   .dline .who{min-width:46px}
 }
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+/* exámenes y bloqueo */
+.topic.lockd{opacity:.55;background:var(--beige-2)}
+.exam-card{border:2px dashed var(--blue-300);background:var(--blue-100)}
+.exam-card.avail{cursor:pointer;border-style:solid}
+.exam-card.avail:hover{transform:translateY(-2px);border-color:var(--blue-500)}
+.exam-card.passed{border:2px solid var(--ok);background:#EDF3EA;cursor:pointer}
+.opt.sel{border-color:var(--blue-500);background:var(--blue-100);font-weight:600}
+.exam-ta{width:100%;min-height:120px;border:1px solid var(--line);border-radius:12px;padding:12px;font-family:'Outfit',sans-serif;font-size:.92rem;margin-top:10px;background:var(--card);resize:vertical}
+.exam-res{margin-top:18px;padding:18px;border-radius:14px;font-size:.95rem}
+.exam-res.pass{background:#EDF3EA;border:1px solid var(--ok)}
+.exam-res.fail{background:#F8E9E6;border:1px solid var(--accent)}
+/* video */
+.vid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:14px}
+.vid-card{display:flex;gap:14px;align-items:center;background:var(--beige);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:.2s}
+.vid-card:hover{border-color:var(--blue-300);transform:translateY(-2px)}
+.vid-card .vid-ico{width:42px;height:42px;border-radius:12px;background:var(--blue-500);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.vid-card.tv5 .vid-ico{background:var(--accent)}
+.vid-card strong{display:block;font-size:.95rem}
+.vid-card span{font-size:.78rem;color:var(--ink-soft)}
+/* lectura */
+.lect-txt{background:var(--beige);border:1px solid var(--line);border-left:4px solid var(--blue-500);border-radius:0 14px 14px 0;padding:22px 26px;max-width:720px;font-size:.97rem;line-height:1.75}
 </style>
 </head>
 <body>
@@ -339,8 +361,10 @@ const PHASES=[
  {k:'dec',   n:'Découverte',   s:'El tema en acción: obsérvalo en uso, sin teoría todavía.'},
  {k:'app',   n:'Application',  s:'Ejercicios fáciles para ganar confianza, no para frustrarte.'},
  {k:'oral',  n:'Expression orale', s:'Situaciones de la vida real para practicar el speaking.'},
- {k:'ecoute',n:'Écoute',       s:'Entrena tu oído con audio en francés nativo (síntesis fr-FR).'},
+ {k:'ecoute',n:'Écoute',       s:'Entrena tu oído con audio de hablantes nativos.'},
  {k:'gram',  n:'Grammaire',    s:'Ahora sí: la regla detrás de lo que ya sabes usar.'},
+ {k:'video', n:'Vidéo',        s:'Actividad extra: francés auténtico en video, de fuentes confiables.'},
+ {k:'lect',  n:'Lecture',      s:'Cierre: una lectura de tu nivel que integra todo el tema.'},
 ];
 
 /* ---------- Contenido completo (un tema por nivel en v1) ---------- */
@@ -543,14 +567,421 @@ const CONTENT={
  ]},
 },
 };
+/* ---------- Voces, video y lectura para las 3 lecciones existentes ---------- */
+CONTENT['a1-1'].voices={Claire:'f',Diego:'m'};
+CONTENT['a1-1'].video={queries:[
+ {label:'Se présenter en français (A1)',q:'se présenter en français A1 débutant'},
+ {label:'Les salutations en français',q:'salutations en français débutant bonjour bonsoir'},
+],mision:['Mira al menos un video completo','Anota 3 palabras que reconociste de esta lección','Repite en voz alta una frase que escuchaste']};
+CONTENT['a1-1'].lect={titre:'Un message sur le forum de l\'école',
+ texte:`Bonjour à tous !\n\nJe m'appelle Clara Dubois. Je suis française et j'habite à Bordeaux. Je suis professeure d'espagnol. Et vous ? Comment vous appelez-vous ? Vous habitez où ?\n\nÀ bientôt !\nClara`,
+ qs:[
+  {stem:'¿Cómo se llama la persona que escribe?',opts:['Clara Dubois','Claire Dupont','Carla Dubois'],a:0,fb:'« Je m\'appelle Clara Dubois. »'},
+  {stem:'¿Dónde vive?',opts:['En Burdeos','En París','En Lyon'],a:0,fb:'« J\'habite à Bordeaux. »'},
+  {stem:'¿Cuál es su profesión?',opts:['Profesora de español','Estudiante de música','Profesora de francés'],a:0,fb:'« Je suis professeure d\'espagnol. »'},
+  {stem:'¿Cómo se despide?',opts:['À bientôt','Au revoir','Bonne nuit'],a:0,fb:'Termina con « À bientôt ! » — hasta pronto.'},
+ ]};
 
-/* ================= ESTADO Y UTILIDADES ================= */
-const store={
- _m:{},
- get(k){try{return localStorage.getItem(k)??this._m[k]??null}catch(e){return this._m[k]??null}},
- set(k,v){try{localStorage.setItem(k,v)}catch(e){} this._m[k]=v}
+CONTENT['a2-1'].voices={'Inès':'f',Karim:'m'};
+CONTENT['a2-1'].video={queries:[
+ {label:'Le passé composé (explicación fácil)',q:'passé composé explication facile A2'},
+ {label:'Raconter son week-end',q:'raconter son week-end en français A2'},
+],mision:['Mira al menos un video completo','Anota 3 verbos en passé composé que escuchaste','Identifica uno conjugado con être']};
+CONTENT['a2-1'].lect={titre:'Blog : Mon week-end à Annecy',
+ texte:`Samedi matin, je suis parti très tôt avec ma copine. Nous sommes arrivés à Annecy à dix heures. D'abord, nous nous sommes promenés au bord du lac, puis nous avons mangé une fondue délicieuse dans un petit restaurant.\n\nL'après-midi, j'ai visité la vieille ville et ma copine a fait les boutiques. Le soir, nous avons assisté à un concert sur la place.\n\nDimanche, il a plu toute la journée, alors nous sommes rentrés à Lyon. Quel beau week-end !`,
+ qs:[
+  {stem:'¿A qué hora llegaron a Annecy?',opts:['A las 10','A las 12','Muy tarde'],a:0,fb:'« Nous sommes arrivés à Annecy à dix heures. »'},
+  {stem:'¿Qué comieron?',opts:['Una fondue','Una pizza','Crepas'],a:0,fb:'« nous avons mangé une fondue délicieuse »'},
+  {stem:'¿Qué hicieron el sábado por la noche?',opts:['Asistieron a un concierto','Fueron al cine','Se quedaron en el hotel'],a:0,fb:'« Le soir, nous avons assisté à un concert sur la place. »'},
+  {stem:'¿Por qué regresaron el domingo?',opts:['Porque llovió todo el día','Porque estaban cansados','Porque hacía calor'],a:0,fb:'« il a plu toute la journée, alors nous sommes rentrés »'},
+  {stem:'« Nous sommes arrivés » usa être porque arriver es un verbo de…',opts:['movimiento','opinión','alimentación'],a:0,fb:'Arriver pertenece a la lista de verbos de movimiento que van con être.'},
+ ]};
+
+CONTENT['b1-1'].voices={'Léa':'f',Hugo:'m'};
+CONTENT['b1-1'].video={queries:[
+ {label:'Exprimer son opinion (B1)',q:'exprimer son opinion en français B1'},
+ {label:'Débat en français',q:'débat en français niveau B1 pour ou contre'},
+],mision:['Mira al menos un video completo','Anota 3 expresiones de opinión que escuchaste','¿El hablante matizó su opinión? ¿Con qué conector?']};
+CONTENT['b1-1'].lect={titre:'Chronique : Les réseaux sociaux, amis ou ennemis ?',
+ texte:`À mon avis, les réseaux sociaux ont transformé notre façon de communiquer. Je trouve qu'ils nous permettent de rester en contact avec nos proches, même à distance.\n\nEn revanche, beaucoup d'experts pensent que nous passons trop de temps devant nos écrans. Néanmoins, le problème n'est pas l'outil : c'est notre usage.\n\nPersonnellement, je ne pense pas que la solution soit d'interdire ces plateformes. Il faut plutôt apprendre à les utiliser avec modération. Au fond, ça dépend de chacun.`,
+ qs:[
+  {stem:'¿Qué opina el autor sobre prohibir las redes sociales?',opts:['No cree que sea la solución','Está totalmente a favor','No da su opinión'],a:0,fb:'« je ne pense pas que la solution soit d\'interdire »'},
+  {stem:'¿Qué conector introduce la opinión contraria de los expertos?',opts:['En revanche','À mon avis','Au fond'],a:0,fb:'« En revanche, beaucoup d\'experts pensent que… »'},
+  {stem:'« Je ne pense pas que la solution ____ … » — el verbo va en:',opts:['subjuntivo (soit)','indicativo (est)','futuro (sera)'],a:0,fb:'Opinión negativa → subjuntivo: soit.'},
+  {stem:'La actitud general del autor es…',opts:['matizada: ve pros y contras','totalmente negativa','indiferente'],a:0,fb:'Usa en revanche y néanmoins para equilibrar ambos lados — típico del nivel B1.'},
+ ]};
+
+/* ================= A1-2 : L'alphabet et l'épellation ================= */
+CONTENT['a1-2']={
+ vocab:[
+  {fr:'Comment ça s\'écrit ?',ipa:'/kɔ.mɑ̃ sa se.kʁi/',es:'¿Cómo se escribe?',ex:'Ramírez ? Comment ça s\'écrit ?'},
+  {fr:'Ça s\'écrit…',ipa:'/sa se.kʁi/',es:'Se escribe…',ex:'Ça s\'écrit P, A, U, L.'},
+  {fr:'Vous pouvez épeler, s\'il vous plaît ?',ipa:'/e.ple/',es:'¿Puede deletrear, por favor?',ex:'Votre nom ? Vous pouvez épeler, s\'il vous plaît ?'},
+  {fr:'l\'accent aigu (é)',ipa:'/ak.sɑ̃ e.ɡy/',es:'acento agudo: é',ex:'Café : C, A, F, E accent aigu.'},
+  {fr:'l\'accent grave (è)',ipa:'/ak.sɑ̃ ɡʁav/',es:'acento grave: è',ex:'Père : P, E accent grave, R, E.'},
+  {fr:'l\'accent circonflexe (ê)',ipa:'/siʁ.kɔ̃.flɛks/',es:'acento circunflejo: ê',ex:'Fête : F, E accent circonflexe, T, E.'},
+  {fr:'la cédille (ç)',ipa:'/se.dij/',es:'cedilla: ç',ex:'Garçon : G, A, R, C cédille, O, N.'},
+  {fr:'le tréma (ë)',ipa:'/tʁe.ma/',es:'diéresis: ë',ex:'Noël : N, O, E tréma, L.'},
+  {fr:'l\'apostrophe',ipa:'/a.pɔs.tʁɔf/',es:'apóstrofo',ex:'L\'école : L, apostrophe, E…'},
+  {fr:'le tiret',ipa:'/ti.ʁɛ/',es:'guion',ex:'Jean-Paul : Jean, tiret, Paul.'},
+  {fr:'majuscule / minuscule',ipa:'/ma.ʒys.kyl/',es:'mayúscula / minúscula',ex:'P majuscule, comme Paris.'},
+  {fr:'arobase (@) / point',ipa:'/a.ʁɔ.baz/',es:'arroba / punto',ex:'marie point dupont arobase mail point com.'},
+ ],
+ match:[['é','accent aigu'],['è','accent grave'],['ê','accent circonflexe'],['ç','cédille'],['ë','tréma'],['@','arobase']],
+ voices:{'L\'employée':'f',Diego:'m'},
+ dec:{titre:'À l\'accueil de l\'école de langues',intro:'Diego se inscribe a un curso. Escucha cómo se deletrea en francés — fíjate en cómo se nombran los acentos.',lines:[
+  ['L\'employée','Bonjour ! Votre prénom, s\'il vous plaît ?'],
+  ['Diego','Diego.'],
+  ['L\'employée','Comment ça s\'écrit ?'],
+  ['Diego','D, I, E, G, O.'],
+  ['L\'employée','Merci. Et votre nom de famille ?'],
+  ['Diego','Ramírez. Ça s\'écrit R, A, M, I accent aigu, R, E, Z.'],
+  ['L\'employée','Parfait. Votre adresse e-mail ?'],
+  ['Diego','diego point ramirez arobase mail point com. Tout en minuscules.'],
+  ['L\'employée','C\'est noté. Merci, monsieur Ramírez !'],
+ ]},
+ app:[
+  {stem:'La letra « é » lleva…',opts:['un accent aigu','un accent grave','une cédille'],a:0,fb:'é = accent aigu (sube hacia la derecha).'},
+  {stem:'En « garçon », la « ç » se llama…',opts:['cédille','tréma','tiret'],a:0,fb:'La cédille hace que la C suene /s/.'},
+  {stem:'Para pedir que deletreen, dices:',opts:['Vous pouvez épeler, s\'il vous plaît ?','Vous pouvez répéter le numéro ?','Comment allez-vous ?'],a:0,fb:'Épeler = deletrear.'},
+  {stem:'« Jean-Paul » lleva entre los dos nombres…',opts:['un tiret','une apostrophe','un accent'],a:0,fb:'El guion se llama tiret.'},
+  {stem:'En un e-mail, « @ » se dice…',opts:['arobase','point','tréma'],a:0,fb:'@ = arobase; el punto = point.'},
+  {stem:'« Fête » lleva sobre la E…',opts:['un accent circonflexe','un accent aigu','un tréma'],a:0,fb:'ê = accent circonflexe (el “sombrerito”).'},
+ ],
+ oral:[
+  {t:'Deletrea tu nombre por teléfono',ctx:'Reservas una mesa y el restaurante necesita tu nombre. Por teléfono no te ven: hay que deletrear.',mision:['Di tu nombre completo','Deletréalo letra por letra','Menciona el acento si tu nombre lleva uno'],modele:'— C\'est à quel nom ?\n— Au nom de García : G, A, R, C, I accent aigu, A.\n— Très bien, monsieur García. À ce soir !',tip:'Practica deletreando tu nombre real 5 veces seguidas hasta hacerlo sin pensar — lo usarás toda la vida.'},
+  {t:'Dicta tu correo electrónico',ctx:'Te inscribes a un boletín en una librería francesa.',mision:['Dicta tu e-mail real en francés','Usa point y arobase','Aclara « tout en minuscules »'],modele:'— Votre e-mail, s\'il vous plaît ?\n— C\'est ulises point martinez arobase gmail point com. Tout en minuscules.\n— Merci !',tip:'Los franceses dictan los correos exactamente así: nombre, point, apellido, arobase, dominio.'},
+  {t:'Pide que te deletreen',ctx:'No entendiste el apellido de tu nuevo contacto. Pide ayuda con cortesía.',mision:['Pide deletrear: « Vous pouvez épeler, s\'il vous plaît ? »','Repite las letras para confirmar','Agradece'],modele:'— Je m\'appelle madame Beaulieu.\n— Pardon, vous pouvez épeler, s\'il vous plaît ?\n— B, E, A, U, L, I, E, U.\n— B, E, A, U, L, I, E, U. Merci beaucoup !',tip:'Repetir las letras en voz alta para confirmar es lo que hace un francés real al teléfono.'},
+ ],
+ ecoute:[
+  {audio:'Ça s\'écrit M, A, R, I, E.',stem:'¿Qué nombre deletrearon?',opts:['Marie','Mario','Marc'],a:0},
+  {audio:'Mon nom, c\'est Lefèvre : L, E, F, E accent grave, V, R, E.',v:'m',stem:'¿Qué acento lleva el apellido Lefèvre?',opts:['Accent grave','Accent aigu','Cédille'],a:0},
+  {audio:'Mon adresse, c\'est paul point durand arobase mail point fr.',v:'m',stem:'¿Qué dictó la persona?',opts:['Su correo electrónico','Su teléfono','Su dirección postal'],a:0},
+  {audio:'Ça s\'écrit avec un F majuscule, comme France.',stem:'¿Cómo se escribe la palabra?',opts:['Con F mayúscula','Con f minúscula','Con dos F'],a:0},
+ ],
+ gram:{html:`
+  <h4>1. Las letras “traicioneras” del alfabeto francés</h4>
+  <p>La mayoría suenan parecido al español, pero memoriza estas:</p>
+  <table><tr><th>Letra</th><th>Se pronuncia</th></tr>
+  <tr><td>E</td><td>/ə/ (como “eu” suave)</td></tr>
+  <tr><td>G</td><td>/ʒe/ (“llé” suave)</td></tr>
+  <tr><td>J</td><td>/ʒi/ (“lli” suave)</td></tr>
+  <tr><td>U</td><td>/y/ (una “i” con labios de “u”)</td></tr>
+  <tr><td>W</td><td>double vé</td></tr>
+  <tr><td>Y</td><td>i grec</td></tr></table>
+  <h4>2. Los signos al deletrear</h4>
+  <p>é = <b>accent aigu</b> · è = <b>accent grave</b> · ê = <b>accent circonflexe</b> · ç = <b>cédille</b> · ë = <b>tréma</b> · - = <b>tiret</b> · ' = <b>apostrophe</b></p>
+  <h4>3. Fórmulas clave</h4>
+  <p><b>Comment ça s'écrit ?</b> (¿cómo se escribe?) · <b>Ça s'écrit…</b> (se escribe…) · <b>Vous pouvez épeler ?</b> (¿puede deletrear?)</p>
+  <div class="tip"><b>Astuce :</b> G y J se confunden hasta entre franceses: G suena /ʒe/ y J suena /ʒi/ — exactamente al revés que en inglés.</div>`,
+ ex:[
+  {stem:'La letra « J » en francés se pronuncia…',opts:['/ʒi/','/ʒe/','/xota/'],a:0,fb:'J = /ʒi/. La que suena /ʒe/ es la G.'},
+  {stem:'« Y » se llama…',opts:['i grec','i griega','ypsilon'],a:0,fb:'Y = i grec.'},
+  {stem:'« ç » sirve para que la C suene…',opts:['/s/','/k/','/ʃ/'],a:0,fb:'La cédille convierte el sonido /k/ en /s/: garçon.'},
+  {stem:'« W » se dice…',opts:['double vé','double u','doublé'],a:0,fb:'W = double vé.'},
+  {stem:'Para confirmar que entendiste, lo mejor es…',opts:['repetir las letras en voz alta','decir « oui » y ya','colgar el teléfono'],a:0,fb:'Repetir las letras es la estrategia de confirmación estándar.'},
+ ]},
+ video:{queries:[
+  {label:'El alfabeto francés con pronunciación',q:'alphabet français prononciation A1'},
+  {label:'Cómo deletrear en francés',q:'épeler en français comment ça s\'écrit'},
+ ],mision:['Mira al menos un video completo','Pronuncia el alfabeto junto con el video','Anota las 3 letras que más te cuestan']},
+ lect:{titre:'Le formulaire d\'inscription',
+  texte:`ÉCOLE DE FRANÇAIS « LUMIÈRE » — Fiche d'inscription\n\nPrénom : Valérie\nNom : Lefèvre (L, E, F, E accent grave, V, R, E)\nNationalité : française\nE-mail : valerie.lefevre@mail.fr (tout en minuscules)\nVille : Besançon\n\nNote du secrétariat : Attention, le nom s'écrit avec un accent grave, et le prénom avec un accent aigu !`,
+  qs:[
+   {stem:'¿Qué acento lleva el apellido Lefèvre?',opts:['Accent grave','Accent aigu','Circonflexe'],a:0,fb:'La nota lo aclara: « le nom s\'écrit avec un accent grave ».'},
+   {stem:'¿Y el nombre Valérie?',opts:['Accent aigu','Accent grave','Tréma'],a:0,fb:'« le prénom avec un accent aigu » : Valérie.'},
+   {stem:'¿Cómo está escrito su e-mail?',opts:['Todo en minúsculas','Todo en mayúsculas','Con guion'],a:0,fb:'« tout en minuscules ».'},
+   {stem:'¿En qué ciudad vive?',opts:['Besançon','Bordeaux','Boulogne'],a:0,fb:'Ville : Besançon — ¡con cédille!'},
+  ]},
 };
-let state=JSON.parse(store.get('allonsy')||'{"xp":0,"done":{}}');
+
+/* ================= A1-3 : Les nombres 0–69 ================= */
+CONTENT['a1-3']={
+ vocab:[
+  {fr:'zéro, un, deux, trois',ipa:'/ze.ʁo œ̃ dø tʁwa/',es:'0, 1, 2, 3',ex:'Un, deux, trois… partez !'},
+  {fr:'quatre, cinq, six',ipa:'/katʁ sɛ̃k sis/',es:'4, 5, 6',ex:'J\'ai quatre frères.'},
+  {fr:'sept, huit, neuf, dix',ipa:'/sɛt ɥit nœf dis/',es:'7, 8, 9, 10',ex:'Le cours commence à dix heures.'},
+  {fr:'onze, douze, treize',ipa:'/ɔ̃z duz tʁɛz/',es:'11, 12, 13',ex:'Ouvrez à la page douze.'},
+  {fr:'quatorze, quinze, seize',ipa:'/ka.tɔʁz kɛ̃z sɛz/',es:'14, 15, 16',ex:'Elle a quinze ans.'},
+  {fr:'dix-sept, dix-huit, dix-neuf',ipa:'/di.sɛt di.zɥit diz.nœf/',es:'17, 18, 19',ex:'Mon frère a dix-huit ans.'},
+  {fr:'vingt',ipa:'/vɛ̃/',es:'20',ex:'Vingt euros, s\'il vous plaît.'},
+  {fr:'trente',ipa:'/tʁɑ̃t/',es:'30',ex:'La page trente, s\'il vous plaît.'},
+  {fr:'quarante',ipa:'/ka.ʁɑ̃t/',es:'40',ex:'Mon père a quarante ans.'},
+  {fr:'cinquante',ipa:'/sɛ̃.kɑ̃t/',es:'50',ex:'Ça coûte cinquante euros.'},
+  {fr:'soixante',ipa:'/swa.sɑ̃t/',es:'60',ex:'Ma grand-mère a soixante ans.'},
+  {fr:'Quel âge avez-vous ?',ipa:'/kɛl ɑʒ a.ve vu/',es:'¿Qué edad tiene usted?',ex:'Quel âge avez-vous ? — J\'ai vingt-cinq ans.'},
+  {fr:'J\'ai … ans',ipa:'/ʒe … ɑ̃/',es:'Tengo … años',ex:'J\'ai vingt et un ans.'},
+ ],
+ match:[['quinze','15'],['vingt','20'],['trente','30'],['quarante','40'],['cinquante','50'],['soixante','60']],
+ voices:{'Léa':'f',Tom:'m'},
+ dec:{titre:'Échange de numéros à la fac',intro:'En Francia los números de teléfono se dicen en pares (06 34 52…). Escucha sin intentar traducir: deja que tu oído capte los números.',lines:[
+  ['Tom','Tu as quel âge, Léa ?'],
+  ['Léa','J\'ai dix-neuf ans. Et toi ?'],
+  ['Tom','Moi, j\'ai vingt et un ans.'],
+  ['Léa','Tu me donnes ton numéro de téléphone ?'],
+  ['Tom','Oui ! C\'est le zéro six, trente-quatre, cinquante-deux, dix-huit, quarante-sept.'],
+  ['Léa','Merci ! Je t\'envoie un message ce soir.'],
+ ]},
+ app:[
+  {stem:'« Quinze » es…',opts:['15','5','50'],a:0,fb:'Quinze = 15. Cinq = 5, cinquante = 50.'},
+  {stem:'21 se dice…',opts:['vingt et un','vingt-un','deux-un'],a:0,fb:'Con 1 se usa « et » : vingt et un, trente et un…'},
+  {stem:'« J\'ai vingt ans » significa…',opts:['Tengo 20 años','Tengo 20 hermanos','Son las 20 horas'],a:0,fb:'Avoir + ans = edad.'},
+  {stem:'16 se escribe…',opts:['seize','six-dix','dix-six'],a:0,fb:'14, 15 y 16 tienen palabra propia: quatorze, quinze, seize.'},
+  {stem:'47 = quarante-…',opts:['sept','sept-dix','soixante'],a:0,fb:'40 + 7 = quarante-sept, con guion.'},
+  {stem:'33 se dice…',opts:['trente-trois','trois-trois','trente et trois'],a:0,fb:'Trente-trois: « et » solo se usa con el 1.'},
+ ],
+ oral:[
+  {t:'Di tu edad real',ctx:'En una conversación informal te preguntan la edad.',mision:['Responde con tu edad real: « J\'ai … ans »','Pregunta de vuelta: « Et toi, tu as quel âge ? »','Reacciona: « Ah, moi aussi ! » o « Sérieux ? »'],modele:'— Tu as quel âge ?\n— J\'ai vingt-huit ans. Et toi ?\n— Moi, j\'ai vingt-six ans.',tip:'Di tu edad real en voz alta 5 veces hoy. Es de las frases que más usarás.'},
+  {t:'Dicta tu número de teléfono',ctx:'Un nuevo amigo francés te pide tu número. En Francia se dicta en pares.',mision:['Dicta tu número real agrupado en pares','Empieza con « C\'est le… »','Pide el suyo: « Et le tien ? »'],modele:'— Tu me donnes ton numéro ?\n— Oui, c\'est le zéro six, quarante-cinq, douze, trente-trois, soixante.\n— Merci, je t\'appelle !',tip:'Escribe tu número en pares y practica dictarlo: es el ejercicio de números más realista que existe.'},
+  {t:'Pregunta la edad con cortesía',ctx:'Contexto formal: una encuesta en la calle.',mision:['Usa la forma formal: « Quel âge avez-vous ? »','Agradece la respuesta','Despídete: « Bonne journée ! »'],modele:'— Bonjour, c\'est pour un sondage. Quel âge avez-vous ?\n— J\'ai trente-cinq ans.\n— Merci beaucoup. Bonne journée !',tip:'En Francia preguntar la edad en contextos sociales puede ser delicado — en encuestas o trámites es normal.'},
+ ],
+ ecoute:[
+  {audio:'Mon numéro, c\'est le zéro cinq, quarante-quatre, vingt-trois, soixante, douze.',v:'m',stem:'¿Qué par escuchaste después del zéro cinq?',opts:['44','34','54'],a:0},
+  {audio:'J\'ai trente-six ans et ma fille a douze ans.',stem:'¿Qué edad tiene la hija?',opts:['12','36','16'],a:0},
+  {audio:'Ça coûte cinquante-neuf euros.',v:'m',stem:'¿Cuánto cuesta?',opts:['59 €','49 €','69 €'],a:0},
+  {audio:'Ouvrez le livre à la page quarante et un.',stem:'¿Qué página hay que abrir?',opts:['41','51','31'],a:0},
+ ],
+ gram:{html:`
+  <h4>1. La lógica de 0 a 69</h4>
+  <p>0–16 tienen palabra propia. 17–19 se construyen: <b>dix-sept, dix-huit, dix-neuf</b>. Después: decena + unidad con guion.</p>
+  <table><tr><th>Regla</th><th>Ejemplos</th></tr>
+  <tr><td>decena + et un</td><td>vingt <b>et un</b> (21), trente <b>et un</b> (31)… hasta soixante et un (61)</td></tr>
+  <tr><td>decena-unidad</td><td>vingt-deux (22), quarante-sept (47), soixante-neuf (69)</td></tr></table>
+  <h4>2. La edad: con AVOIR, nunca con être</h4>
+  <p>En francés la edad se <b>tiene</b>: <b>J'ai 25 ans</b> (literalmente "tengo 25 años", ¡igual que en español y al contrario que en inglés!). Nunca olvides la palabra <b>ans</b>.</p>
+  <h4>3. Preguntar la edad</h4>
+  <p>Informal: <b>Tu as quel âge ?</b> · Formal: <b>Quel âge avez-vous ?</b></p>
+  <div class="tip"><b>Astuce :</b> la reforma ortográfica de 1990 permite escribir « vingt-et-un » todo con guiones, pero la forma clásica « vingt et un » sigue siendo la más común — reconoce ambas.</div>`,
+ ex:[
+  {stem:'61 se dice…',opts:['soixante et un','soixante-un','six-un'],a:0,fb:'Con 1: soixante et un.'},
+  {stem:'« Elle ____ huit ans. »',opts:['a','est','as'],a:0,fb:'La edad va con avoir: elle a huit ans.'},
+  {stem:'55 = …',opts:['cinquante-cinq','cinq-cinq','quinze-cinq'],a:0,fb:'50 + 5 = cinquante-cinq.'},
+  {stem:'« Tu ____ quel âge ? »',opts:['as','es','a'],a:0,fb:'Tu → as (avoir).'},
+  {stem:'19 = …',opts:['dix-neuf','neuf-dix','dix et neuf'],a:0,fb:'17, 18, 19 = dix + unidad con guion.'},
+ ]},
+ video:{queries:[
+  {label:'Los números del 0 al 69',q:'les nombres en français 0 à 69 prononciation'},
+  {label:'Contar en francés (principiantes)',q:'compter en français débutant A1'},
+ ],mision:['Mira al menos un video completo','Cuenta en voz alta junto con el video','Dicta tu número de teléfono al terminar']},
+ lect:{titre:'La petite annonce',
+  texte:`COURS DE GUITARE\n\nProfesseur de musique donne cours de guitare pour débutants.\nÂge : de sept à soixante-cinq ans !\nPrix : vingt-cinq euros l'heure.\nTéléphone : zéro six, quarante-deux, treize, cinquante et un, trente.\nDisponible le samedi de dix heures à dix-huit heures.`,
+  qs:[
+   {stem:'¿Cuánto cuesta la hora de clase?',opts:['25 €','35 €','45 €'],a:0,fb:'« vingt-cinq euros l\'heure »'},
+   {stem:'¿Hasta qué edad aceptan alumnos?',opts:['65 años','55 años','60 años'],a:0,fb:'« de sept à soixante-cinq ans »'},
+   {stem:'El segundo par del teléfono es…',opts:['42','52','32'],a:0,fb:'« zéro six, quarante-deux… » = 06 42…'},
+   {stem:'¿Qué día está disponible el profesor?',opts:['El sábado','El domingo','El lunes'],a:0,fb:'« Disponible le samedi ».'},
+  ]},
+};
+
+/* ================= A1-4 : En classe ================= */
+CONTENT['a1-4']={
+ vocab:[
+  {fr:'un livre',ipa:'/œ̃ livʁ/',es:'un libro',ex:'Ouvrez le livre, s\'il vous plaît.'},
+  {fr:'un cahier',ipa:'/œ̃ ka.je/',es:'un cuaderno',ex:'J\'écris dans mon cahier.'},
+  {fr:'un stylo',ipa:'/œ̃ sti.lo/',es:'una pluma / bolígrafo',ex:'Tu as un stylo bleu ?'},
+  {fr:'un crayon',ipa:'/œ̃ kʁɛ.jɔ̃/',es:'un lápiz',ex:'Je dessine avec un crayon.'},
+  {fr:'une gomme',ipa:'/yn ɡɔm/',es:'una goma / borrador',ex:'Tu me prêtes ta gomme ?'},
+  {fr:'une chaise',ipa:'/yn ʃɛz/',es:'una silla',ex:'Il y a vingt chaises dans la classe.'},
+  {fr:'le tableau',ipa:'/lə ta.blo/',es:'el pizarrón',ex:'Regardez le tableau !'},
+  {fr:'Écoutez !',ipa:'/e.ku.te/',es:'¡Escuchen!',ex:'Écoutez et répétez !'},
+  {fr:'Répétez !',ipa:'/ʁe.pe.te/',es:'¡Repitan!',ex:'Répétez après moi : bonjour !'},
+  {fr:'Ouvrez le livre à la page…',ipa:'/u.vʁe/',es:'Abran el libro en la página…',ex:'Ouvrez le livre à la page douze.'},
+  {fr:'Je ne comprends pas',ipa:'/ʒə nə kɔ̃.pʁɑ̃ pa/',es:'No entiendo',ex:'Pardon, je ne comprends pas.'},
+  {fr:'Vous pouvez répéter, s\'il vous plaît ?',ipa:'/ʁe.pe.te/',es:'¿Puede repetir, por favor?',ex:'Plus lentement, s\'il vous plaît !'},
+  {fr:'Comment dit-on … en français ?',ipa:'/kɔ.mɑ̃ di.tɔ̃/',es:'¿Cómo se dice … en francés?',ex:'Comment dit-on « pizarrón » en français ?'},
+ ],
+ match:[['un livre','un libro'],['un cahier','un cuaderno'],['un stylo','una pluma'],['une gomme','una goma'],['le tableau','el pizarrón'],['une chaise','una silla']],
+ voices:{'La prof':'f','Sofía':'f',Diego:'m'},
+ dec:{titre:'Premier cours de français',intro:'Una clase real. Estas frases las usarás cada sesión — son tu kit de supervivencia en el aula.',lines:[
+  ['La prof','Bonjour à tous ! Ouvrez le livre à la page douze.'],
+  ['Sofía','Pardon madame, je ne comprends pas. Vous pouvez répéter, s\'il vous plaît ?'],
+  ['La prof','Bien sûr : la page douze. Écoutez et répétez : « Bonjour ! »'],
+  ['Diego','Madame, comment dit-on « pizarrón » en français ?'],
+  ['La prof','On dit « le tableau ». Regardez le tableau !'],
+  ['Diego','Merci, madame !'],
+ ]},
+ app:[
+  {stem:'Para escribir, necesitas…',opts:['un stylo','une chaise','un tableau'],a:0,fb:'Un stylo = pluma/bolígrafo.'},
+  {stem:'« Ouvrez le livre » significa…',opts:['Abran el libro','Cierren el libro','Lean el libro'],a:0,fb:'Ouvrez = abran (de ouvrir).'},
+  {stem:'Si no entendiste, dices…',opts:['Je ne comprends pas','Je ne parle pas','Je ne sais pas écrire'],a:0,fb:'Je ne comprends pas = no entiendo.'},
+  {stem:'Para preguntar una palabra:',opts:['Comment dit-on « mesa » en français ?','Comment ça va ?','Comment vous appelez-vous ?'],a:0,fb:'Comment dit-on X en français ? es la pregunta clave del estudiante.'},
+  {stem:'« Une ____ » (femenino):',opts:['gomme','stylo','livre'],a:0,fb:'Une gomme. Stylo y livre son masculinos: un stylo, un livre.'},
+  {stem:'« Répétez après moi » lo dice típicamente…',opts:['el profesor a la clase','un alumno al profesor','el libro'],a:0,fb:'Es una consigna de clase: ¡repitan después de mí!'},
+ ],
+ oral:[
+  {t:'Pide que repitan más lento',ctx:'El profesor habla rápido y te perdiste. ¡Es normal! Pedir ayuda también es hablar francés.',mision:['Disculpa: « Pardon, madame / monsieur »','Pide repetir: « Vous pouvez répéter, s\'il vous plaît ? »','Añade: « Plus lentement, s\'il vous plaît »'],modele:'— Pardon, monsieur, je ne comprends pas. Vous pouvez répéter plus lentement, s\'il vous plaît ?\n— Bien sûr !',tip:'Memoriza esta frase completa: es la herramienta #1 para no perderte nunca en una clase o conversación.'},
+  {t:'Pregunta cómo se dice una palabra',ctx:'Necesitas una palabra que no conoces. Úsalo como reflejo permanente.',mision:['Pregunta: « Comment dit-on … en français ? »','Repite la respuesta en voz alta','Agradece'],modele:'— Comment dit-on « mochila » en français ?\n— On dit « un sac à dos ».\n— Un sac à dos… merci !',tip:'Convierte esta pregunta en hábito: cada día pregunta (o búscate) 3 palabras nuevas con esta fórmula.'},
+  {t:'Pide prestado un material',ctx:'Olvidaste tu pluma. Pídela a tu compañero (informal).',mision:['Pide: « Tu as un stylo, s\'il te plaît ? »','Agradece al recibirlo','Devuélvelo: « Tiens, merci ! »'],modele:'— Tu as un stylo, s\'il te plaît ?\n— Oui, tiens !\n— Merci ! … Tiens, et merci encore.\n— De rien !',tip:'Ojo al registro: s\'il TE plaît con compañeros, s\'il VOUS plaît con el profesor.'},
+ ],
+ ecoute:[
+  {audio:'Ouvrez le cahier à la page vingt, s\'il vous plaît.',stem:'¿Qué pide el profesor?',opts:['Abrir el cuaderno en la página 20','Cerrar el libro','Pasar al pizarrón'],a:0},
+  {audio:'Écoutez bien et répétez après moi.',v:'m',stem:'¿Qué deben hacer los alumnos?',opts:['Escuchar y repetir','Escribir y dibujar','Salir del aula'],a:0},
+  {audio:'Tu me prêtes ta gomme, s\'il te plaît ?',stem:'¿Qué pide prestado?',opts:['Una goma','Una pluma','Un libro'],a:0},
+  {audio:'Regardez le tableau : voici le verbe être.',v:'m',stem:'¿Hacia dónde deben mirar?',opts:['El pizarrón','El libro','La ventana'],a:0},
+ ],
+ gram:{html:`
+  <h4>1. Un / une : el género existe desde la primera palabra</h4>
+  <p>Todo sustantivo francés es masculino o femenino. El artículo te lo dice:</p>
+  <table><tr><th>Masculino</th><th>Femenino</th></tr>
+  <tr><td><b>un</b> livre, <b>un</b> stylo, <b>un</b> cahier</td><td><b>une</b> gomme, <b>une</b> chaise, <b>une</b> table</td></tr>
+  <tr><td><b>le</b> tableau, <b>le</b> professeur</td><td><b>la</b> classe, <b>la</b> page</td></tr></table>
+  <p>Plural para ambos: <b>les</b> livres, <b>les</b> chaises. Ante vocal: <b>l'</b>école, <b>l'</b>élève.</p>
+  <h4>2. Las consignas: el imperativo de vous</h4>
+  <p>Las órdenes de clase usan la forma de vous sin el pronombre: <b>Écoutez ! Répétez ! Ouvrez ! Regardez !</b> Por ahora solo recónocelas — las conjugarás más adelante.</p>
+  <div class="tip"><b>Astuce :</b> aprende cada sustantivo nuevo SIEMPRE con su artículo: no « livre » sino « <b>un</b> livre ». Tu yo del futuro te lo agradecerá.</div>`,
+ ex:[
+  {stem:'« ____ chaise » :',opts:['une','un','les'],a:0,fb:'Chaise es femenino: une chaise.'},
+  {stem:'« ____ crayon » :',opts:['un','une','la'],a:0,fb:'Crayon es masculino: un crayon.'},
+  {stem:'« ____ école » (ante vocal):',opts:["l'",'la','le'],a:0,fb:'Ante vocal: l\'école.'},
+  {stem:'El plural de « le livre » es…',opts:['les livres','los livres','le livres'],a:0,fb:'Plural único: les.'},
+  {stem:'« Écoutez ! » es…',opts:['una consigna / orden','una pregunta','un saludo'],a:0,fb:'Imperativo de clase: ¡escuchen!'},
+ ]},
+ video:{queries:[
+  {label:'Objetos de la clase en francés',q:'le matériel scolaire vocabulaire français A1'},
+  {label:'Frases para sobrevivir en clase',q:'phrases utiles en classe de français débutant'},
+ ],mision:['Mira al menos un video completo','Señala 5 objetos a tu alrededor y nómbralos en francés','Di en voz alta las 3 frases de supervivencia']},
+ lect:{titre:'Le règlement de la classe',
+  texte:`CLASSE DE FRANÇAIS — Règles d'or\n\n1. Écoutez le professeur et les camarades.\n2. Une question ? Levez la main !\n3. Si vous ne comprenez pas, dites : « Je ne comprends pas. »\n4. Apportez votre livre, un cahier et un stylo.\n5. Le téléphone reste dans le sac.\n\nBienvenue et bon courage !`,
+  qs:[
+   {stem:'Si tienes una pregunta, debes…',opts:['levantar la mano','gritar','salir del aula'],a:0,fb:'« Levez la main ! » = levanten la mano.'},
+   {stem:'¿Qué tres materiales hay que traer?',opts:['Libro, cuaderno y pluma','Libro, tableta y goma','Cuaderno, lápiz y regla'],a:0,fb:'« votre livre, un cahier et un stylo ».'},
+   {stem:'¿Dónde debe quedarse el teléfono?',opts:['En la mochila','En la mesa','Con el profesor'],a:0,fb:'« Le téléphone reste dans le sac. »'},
+   {stem:'Si no entiendes, la regla dice que digas…',opts:['« Je ne comprends pas »','« Au revoir »','« J\'ai dix ans »'],a:0,fb:'Regla 3: exprésalo en francés, ¡es parte de aprender!'},
+  ]},
+};
+
+/* ================= A1-5 : Pays et nationalités ================= */
+CONTENT['a1-5']={
+ vocab:[
+  {fr:'mexicain / mexicaine',ipa:'/mɛk.si.kɛ̃ ∙ kɛn/',es:'mexicano / mexicana',ex:'Je suis mexicain. Elle est mexicaine.'},
+  {fr:'français / française',ipa:'/fʁɑ̃.sɛ ∙ sɛz/',es:'francés / francesa',ex:'Paul est français, Marie est française.'},
+  {fr:'espagnol / espagnole',ipa:'/ɛs.pa.ɲɔl/',es:'español / española',ex:'Carmen est espagnole.'},
+  {fr:'américain / américaine',ipa:'/a.me.ʁi.kɛ̃ ∙ kɛn/',es:'estadounidense',ex:'Il est américain, de New York.'},
+  {fr:'canadien / canadienne',ipa:'/ka.na.djɛ̃ ∙ djɛn/',es:'canadiense',ex:'Elle est canadienne, de Montréal.'},
+  {fr:'japonais / japonaise',ipa:'/ʒa.pɔ.nɛ ∙ nɛz/',es:'japonés / japonesa',ex:'Akiko est japonaise.'},
+  {fr:'le Mexique',ipa:'/lə mɛk.sik/',es:'México',ex:'J\'habite au Mexique.'},
+  {fr:'la France',ipa:'/la fʁɑ̃s/',es:'Francia',ex:'Elle habite en France.'},
+  {fr:'les États-Unis',ipa:'/le.z‿e.ta.zy.ni/',es:'Estados Unidos',ex:'Ils habitent aux États-Unis.'},
+  {fr:'Tu viens d\'où ?',ipa:'/ty vjɛ̃ du/',es:'¿De dónde eres / vienes?',ex:'Tu viens d\'où ? — Je viens du Mexique.'},
+  {fr:'Je viens de / du / des…',ipa:'/ʒə vjɛ̃/',es:'Vengo de…',ex:'Je viens de Guadalajara. Il vient du Japon.'},
+  {fr:'Quelle est votre nationalité ?',ipa:'/na.sjɔ.na.li.te/',es:'¿Cuál es su nacionalidad?',ex:'Quelle est votre nationalité ? — Je suis mexicain.'},
+ ],
+ match:[['le Mexique','México'],['la France','Francia'],['les États-Unis','Estados Unidos'],['canadienne','canadiense (f)'],['japonais','japonés (m)'],['espagnole','española (f)']],
+ voices:{Akiko:'f',Mateo:'m'},
+ dec:{titre:'Une classe internationale',intro:'Dos estudiantes de intercambio se conocen. Fíjate cómo cambian las nacionalidades en masculino y femenino — y las pequeñas palabras antes de cada país.',lines:[
+  ['Mateo','Tu viens d\'où, Akiko ?'],
+  ['Akiko','Je viens du Japon, je suis japonaise. Et toi ?'],
+  ['Mateo','Moi, je suis mexicain. Je viens de Guadalajara.'],
+  ['Akiko','Et Sarah ? Elle est française ?'],
+  ['Mateo','Non, elle est canadienne. Elle vient de Montréal.'],
+  ['Akiko','On est une classe très internationale !'],
+ ]},
+ app:[
+  {stem:'« Elle est ____. » (de México)',opts:['mexicaine','mexicain','mexicains'],a:0,fb:'Femenino: mexicaine, con E final (y la N suena).'},
+  {stem:'« Il vient ____ Japon. »',opts:['du','de la','des'],a:0,fb:'Japon es masculino: du Japon.'},
+  {stem:'« Ils viennent ____ États-Unis. »',opts:['des','du','de'],a:0,fb:'País plural: des États-Unis.'},
+  {stem:'Una mujer de Francia es…',opts:['française','français','francése'],a:0,fb:'Français → française.'},
+  {stem:'« J\'habite ____ France. »',opts:['en','au','aux'],a:0,fb:'Francia es femenino: en France.'},
+  {stem:'« Nous habitons ____ Mexique. »',opts:['au','en','à'],a:0,fb:'México es masculino: au Mexique.'},
+ ],
+ oral:[
+  {t:'Preséntate con tu nacionalidad',ctx:'Primer día en un curso internacional en Lyon.',mision:['Di tu nacionalidad: « Je suis… »','Di de qué ciudad vienes: « Je viens de… »','Pregunta a otro: « Et toi, tu viens d\'où ? »'],modele:'— Salut ! Moi, c\'est Ulises. Je suis mexicain, je viens de Guadalajara. Et toi, tu viens d\'où ?\n— Je viens d\'Espagne, je suis espagnole !',tip:'Ojo a la pronunciación: mexicain termina en sonido nasal /ɛ̃/, mexicaine suena la N completa.'},
+  {t:'Presenta a un compañero',ctx:'Presentas a tu amiga japonesa a otro estudiante.',mision:['Preséntala: « Je te présente… »','Di su nacionalidad y ciudad','Deja que se saluden'],modele:'— Je te présente Akiko. Elle est japonaise, elle vient de Tokyo.\n— Enchanté, Akiko !\n— Enchantée !',tip:'Practica también con il: « Il est canadien, il vient de Montréal. »'},
+  {t:'En migración (formal)',ctx:'Llegas al aeropuerto Charles de Gaulle. El oficial te hace preguntas formales.',mision:['Responde a « Quelle est votre nationalité ? »','Di dónde vives: « J\'habite au Mexique »','Mantén el registro formal con vous'],modele:'— Bonjour. Quelle est votre nationalité ?\n— Je suis mexicain, monsieur.\n— Vous habitez où ?\n— J\'habite au Mexique, à Guadalajara.\n— Très bien, bienvenue en France !',tip:'Frases cortas, claras y con monsieur/madame: así suena el registro formal de aeropuerto.'},
+ ],
+ ecoute:[
+  {audio:'Pedro est espagnol. Il vient de Madrid.',v:'m',stem:'¿Cuál es la nacionalidad de Pedro?',opts:['Española','Mexicana','Italiana'],a:0},
+  {audio:'Emma vient des États-Unis, mais elle habite en France.',stem:'¿De qué país viene Emma?',opts:['Estados Unidos','Francia','Canadá'],a:0},
+  {audio:'Ma mère est canadienne et mon père est japonais.',v:'m',stem:'¿De dónde es la madre?',opts:['De Canadá','De Japón','De Francia'],a:0},
+  {audio:'Nous habitons au Mexique, à Monterrey.',stem:'¿Dónde viven?',opts:['En México','En Francia','En España'],a:0},
+ ],
+ gram:{html:`
+  <h4>1. Nacionalidades: masculino → femenino</h4>
+  <table><tr><th>Regla</th><th>Ejemplos</th></tr>
+  <tr><td>+ e (la consonante final suena)</td><td>mexicain → mexicain<b>e</b>, français → français<b>e</b>, japonais → japonais<b>e</b></td></tr>
+  <tr><td>-ien → -ienne</td><td>canadien → canad<b>ienne</b>, italien → ital<b>ienne</b></td></tr>
+  <tr><td>ya termina en -e: no cambia</td><td>il est suisse / elle est suisse, belge, russe</td></tr></table>
+  <h4>2. Vivir EN un país: au / en / aux</h4>
+  <p><b>au</b> + país masculino: au Mexique, au Japon, au Canada<br><b>en</b> + país femenino (casi todos los que terminan en -e): en France, en Espagne<br><b>aux</b> + país plural: aux États-Unis<br>Con ciudades siempre <b>à</b>: à Paris, à Guadalajara.</p>
+  <h4>3. Venir DE un país: du / de / des</h4>
+  <p><b>du</b> Japon (masc.) · <b>de</b> France (fem.) · <b>des</b> États-Unis (plural) · <b>de</b> Guadalajara (ciudad)</p>
+  <div class="tip"><b>Astuce :</b> las nacionalidades en francés se escriben con <b>minúscula</b> (il est mexicain), pero los países con mayúscula (le Mexique). ¡Al revés de lo que esperarías del inglés!</div>`,
+ ex:[
+  {stem:'« Elle est ____. » (de Canadá)',opts:['canadienne','canadien','canadiene'],a:0,fb:'-ien → -ienne: canadienne.'},
+  {stem:'« Il habite ____ Japon. »',opts:['au','en','aux'],a:0,fb:'Japon es masculino: au Japon.'},
+  {stem:'« Elles viennent ____ Espagne. »',opts:["d'",'du','des'],a:0,fb:'Espagne es femenino y empieza con vocal: d\'Espagne.'},
+  {stem:'« il est mexicain » se escribe con…',opts:['minúscula','mayúscula','guion'],a:0,fb:'Nacionalidad como adjetivo → minúscula.'},
+  {stem:'« Nous habitons ____ États-Unis. »',opts:['aux','au','en'],a:0,fb:'Plural: aux États-Unis.'},
+ ]},
+ video:{queries:[
+  {label:'Países y nacionalidades (A1)',q:'pays et nationalités en français A1'},
+  {label:'Decir de dónde vienes',q:'dire d\'où on vient en français venir de'},
+ ],mision:['Mira al menos un video completo','Anota 3 nacionalidades nuevas que no vimos','Di en voz alta tu presentación completa: nombre + nacionalidad + ciudad']},
+ lect:{titre:'Les étudiants du programme d\'échange',
+  texte:`BIENVENUE AUX NOUVEAUX ÉTUDIANTS !\n\nCette année, notre école accueille quatre étudiants internationaux :\n\n— Akiko, vingt ans, est japonaise. Elle vient de Tokyo et elle adore la musique française.\n— Mateo, vingt-deux ans, est mexicain. Il vient de Guadalajara.\n— Sarah, dix-neuf ans, est canadienne. Elle vient de Montréal et elle parle déjà très bien français !\n— Tom, vingt et un ans, est américain. Il vient des États-Unis, de Chicago.\n\nBienvenue à tous !`,
+  qs:[
+   {stem:'¿Cuántos estudiantes internacionales llegan este año?',opts:['Cuatro','Tres','Cinco'],a:0,fb:'« quatre étudiants internationaux ».'},
+   {stem:'¿Quién viene de Montreal?',opts:['Sarah','Akiko','Tom'],a:0,fb:'« Sarah… elle vient de Montréal ».'},
+   {stem:'« Il vient des États-Unis » — se usa des porque el país es…',opts:['plural','femenino','una ciudad'],a:0,fb:'Les États-Unis es plural → des.'},
+   {stem:'¿Qué edad tiene Mateo?',opts:['22','20','19'],a:0,fb:'« Mateo, vingt-deux ans ».'},
+   {stem:'¿Por qué « canadienne » termina en -enne?',opts:['Porque Sarah es mujer','Porque es plural','Por el acento'],a:0,fb:'-ien → -ienne en femenino.'},
+  ]},
+};
+
+/* ================= SISTEMA DE EXÁMENES ================= */
+/* Cada 5 lecciones: examen objetivo, mínimo 8/10 para avanzar.
+   Si repruebas, las 5 lecciones se reinician y debes completarlas de nuevo.
+   Formato inspirado en el DELF: CO (escucha ×2 máx), CE (lectura), estructuras,
+   + producción escrita y oral con rúbrica para evaluación en clase. */
+
+const EXAM_PLAN={
+ A1:[{id:'a1-e1',after:5},{id:'a1-e2',after:10},{id:'a1-e3',after:15},{id:'a1-e4',after:20},{id:'a1-e5',after:25},{id:'a1-final',after:30,final:true}],
+ A2:[{id:'a2-e1',after:5},{id:'a2-e2',after:10},{id:'a2-e3',after:15},{id:'a2-e4',after:20},{id:'a2-e5',after:25},{id:'a2-final',after:30,final:true}],
+ B1:[{id:'b1-e1',after:5},{id:'b1-e2',after:10},{id:'b1-e3',after:15},{id:'b1-e4',after:20},{id:'b1-e5',after:25},{id:'b1-final',after:30,final:true}],
+};
+const PASS_MARK=8;
+
+const EXAMS={
+'a1-e1':{
+ lv:'A1',name:'Examen 1 · Leçons 1–5',
+ desc:'Evalúa: presentarse, deletrear, números 0–69, la clase, países y nacionalidades. Formato tipo DELF: cada audio se puede escuchar máximo 2 veces. Sin retroalimentación durante el examen. Mínimo: 8/10.',
+ co:[
+  {audio:'Bonjour ! Je m\'appelle Hugo, j\'ai vingt-trois ans et je suis belge.',v:'m',stem:'Quel âge a Hugo ?',opts:['23 ans','33 ans','13 ans'],a:0},
+  {audio:'Mon numéro de téléphone, c\'est le zéro six, quinze, quarante, trente-deux, soixante.',stem:'¿Cuál es el segundo par del número (después de zéro six)?',opts:['15','50','45'],a:0},
+  {audio:'Ouvrez le cahier à la page trente, s\'il vous plaît, et écoutez bien.',v:'m',stem:'Qu\'est-ce que le professeur demande ?',opts:['Abrir el cuaderno en la página 30','Cerrar el libro y salir','Repetir la página 13'],a:0},
+  {audio:'Elle s\'appelle Yuki, elle est japonaise et elle habite à Lyon.',stem:'Où habite Yuki ?',opts:['À Lyon','À Tokyo','À Paris'],a:0},
+ ],
+ ce:{titre:'Compréhension écrite — Lee el texto y responde',
+  texte:`Bonjour !\n\nJe m'appelle Carmen Ortiz. Je suis mexicaine et j'ai vingt-huit ans. J'habite à Toulouse, en France, et je suis étudiante en musique.\n\nMon adresse e-mail, c'est carmen.ortiz@mail.fr — ça s'écrit C, A, R, M, E, N, point, O, R, T, I, Z, tout en minuscules.\n\nÀ bientôt !`,
+  qs:[
+   {stem:'Quelle est la nationalité de Carmen ?',opts:['Mexicaine','Française','Espagnole'],a:0},
+   {stem:'Quel âge a-t-elle ?',opts:['28 ans','18 ans','38 ans'],a:0},
+   {stem:'Où habite-t-elle ?',opts:['À Toulouse','À Mexico','À Marseille'],a:0},
+   {stem:'Comment s\'écrit son e-mail ?',opts:['Tout en minuscules','Tout en majuscules','Avec un tiret'],a:0},
+  ]},
+ gram:[
+  {stem:'« Vous ____ français ? »',opts:['êtes','es','est'],a:0},
+  {stem:'« Elle ____ Marie. »',opts:["s'appelle","t'appelles","m'appelle"],a:0},
+  {stem:'« J\'ai vingt ____. »',opts:['ans','années','âge'],a:0},
+  {stem:'« Il vient ____ Mexique. »',opts:['du','de la','des'],a:0},
+  {stem:'21 se dit :',opts:['vingt et un','vingt-un','deux-dix-un'],a:0},
+  {stem:'« ____ gomme » :',opts:['une','un','le'],a:0},
+  {stem:'« Elle est ____. » (de Canadá)',opts:['canadienne','canadien','canadiens'],a:0},
+  {stem:'A tu profesor le hablas de…',opts:['vous','tu','toi'],a:0},
+ ],
+ pe:{consigne:'PRODUCTION ÉCRITE — Escribe tu presentación (30–40 palabras): nombre, edad, nacionalidad, ciudad donde vives y tu e-mail deletreado a la francesa. Esta parte la evalúa tu profesor con la rúbrica.',
+  rubric:['Respeta la consigna y la extensión (30–40 palabras)','Usa correctamente je m\'appelle / j\'ai … ans / je suis + nacionalidad','Usa à / au / en correctamente con ciudad y país','Ortografía de los números y acentos']},
+ po:{consigne:'PRODUCTION ORALE — Grábate 1 minuto presentándote: saludo, nombre deletreado, edad, nacionalidad, ciudad y despedida. Entrega el audio a tu profesor.',
+  rubric:['Pronunciación comprensible de los saludos y números','Deletreo correcto del nombre con los acentos','Fluidez: sin pausas mayores a 5 segundos','Registro adecuado (formal o informal consistente)']},
+},
+};
+
+/* ================= ESTADO ================= */
+const store={_m:{},
+ get(k){try{return localStorage.getItem(k)??this._m[k]??null}catch(e){return this._m[k]??null}},
+ set(k,v){try{localStorage.setItem(k,v)}catch(e){} this._m[k]=v}};
+let state=JSON.parse(store.get('allonsy')||'{"xp":0,"done":{},"exams":{}}');
+state.exams=state.exams||{};
 function save(){store.set('allonsy',JSON.stringify(state));renderXP()}
 function renderXP(){document.getElementById('xpBox').textContent=state.xp+' XP'}
 function addXP(n){state.xp+=n;save()}
@@ -558,62 +989,68 @@ function phaseDone(tid,k){return !!(state.done[tid]&&state.done[tid][k])}
 function markDone(tid,k){state.done[tid]=state.done[tid]||{};if(!state.done[tid][k]){state.done[tid][k]=true;addXP(15)}save()}
 function topicProgress(tid){const d=state.done[tid]||{};return PHASES.filter(p=>d[p.k]).length}
 function levelProgress(lv){const ts=LEVELS[lv].topics;let done=0,total=ts.length*PHASES.length;ts.forEach(t=>done+=topicProgress(t.id));return Math.round(done/total*100)}
-const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+function examPassed(id){return (state.exams[id]??-1)>=PASS_MARK}
 
-/* ---------- audio fr-FR ---------- */
-let frVoice=null;
-function loadVoices(){
- const v=speechSynthesis.getVoices().filter(x=>x.lang.startsWith('fr'));
- if(!v.length){frVoice=null;return}
- /* ranking: voces neuronales/naturales primero */
- const score=x=>{
-  const n=x.name.toLowerCase();let s=0;
-  if(n.includes('natural'))s+=100;           // Edge neuronal (Denise, Henri...)
-  if(n.includes('online'))s+=40;
-  if(n.includes('denise')||n.includes('vivienne')||n.includes('eloise'))s+=30;
-  if(n.includes('google'))s+=50;             // Chrome desktop
-  if(n.includes('amélie')||n.includes('amelie')||n.includes('thomas')||n.includes('audrey'))s+=45; // Apple
-  if(n.includes('siri'))s+=45;
-  if(x.lang==='fr-FR')s+=10;
-  if(x.localService===false)s+=15;           // las remotas suelen ser mejores
-  return s;
- };
- frVoice=v.sort((a,b)=>score(b)-score(a))[0];
-}
-if('speechSynthesis' in window){loadVoices();speechSynthesis.onvoiceschanged=loadVoices}
+/* ================= AUDIO (MP3 neuronal + fallback) ================= */
 function djb2(s){s=s.replace(/\s+/g,' ').trim();let h=5381;for(let i=0;i<s.length;i++){h=((h*33)^s.charCodeAt(i))>>>0}return h.toString(36)}
+let frVoiceF=null,frVoiceM=null;
+function rankVoice(x,male){const n=x.name.toLowerCase();let s=0;
+ if(n.includes('natural'))s+=100;if(n.includes('online'))s+=40;if(n.includes('google'))s+=50;
+ if(n.includes('siri'))s+=45;if(x.lang==='fr-FR')s+=10;if(x.localService===false)s+=15;
+ const fem=['denise','vivienne','eloise','amélie','amelie','audrey','julie','charlotte','hortense'];
+ const mas=['henri','remy','rémy','thomas','paul','nicolas','claude','guy','jerome','jérôme'];
+ (male?mas:fem).forEach(w=>{if(n.includes(w))s+=35});
+ (male?fem:mas).forEach(w=>{if(n.includes(w))s-=60});
+ return s}
+function loadVoices(){const v=speechSynthesis.getVoices().filter(x=>x.lang.startsWith('fr'));
+ if(!v.length){frVoiceF=frVoiceM=null;return}
+ frVoiceF=[...v].sort((a,b)=>rankVoice(b,false)-rankVoice(a,false))[0];
+ frVoiceM=[...v].sort((a,b)=>rankVoice(b,true)-rankVoice(a,true))[0]}
+if('speechSynthesis' in window){loadVoices();speechSynthesis.onvoiceschanged=loadVoices}
 let audioEl=null;
-function speak(t,rate){
- /* 1º intenta MP3 neuronal pre-generado (carpeta /audio); si no existe, usa la voz del navegador */
- window.speechSynthesis&&speechSynthesis.cancel();
- if(audioEl){audioEl.pause();audioEl=null}
- const a=new Audio('audio/'+djb2(t)+'.mp3');
+function stopAudio(){window.speechSynthesis&&speechSynthesis.cancel();if(audioEl){audioEl.pause();audioEl.onended=null;audioEl=null}}
+function speak(t,rate,v,onend){
+ stopAudio();
+ const a=new Audio('audio/'+djb2(t)+(v==='m'?'_m':'')+'.mp3');
  a.playbackRate=(rate&&rate<0.85)?0.72:1;
  try{a.preservesPitch=true}catch(e){}
- a.onerror=()=>speakTTS(t,rate);
- a.play().catch(()=>speakTTS(t,rate));
+ if(onend)a.onended=onend;
+ a.onerror=()=>speakTTS(t,rate,v,onend);
+ a.play().catch(()=>speakTTS(t,rate,v,onend));
  audioEl=a;
 }
-function speakTTS(t,rate){
+function speakTTS(t,rate,v,onend){
  if(!('speechSynthesis' in window)){alert('Tu navegador no soporta síntesis de voz.');return}
  speechSynthesis.cancel();
  const u=new SpeechSynthesisUtterance(t);
- u.lang='fr-FR';if(frVoice)u.voice=frVoice;u.rate=rate||0.92;
+ u.lang='fr-FR';const vo=(v==='m'?frVoiceM:frVoiceF);if(vo)u.voice=vo;u.rate=rate||0.92;
+ if(onend)u.onend=onend;
  speechSynthesis.speak(u);
+}
+/* diálogo con voces alternadas hombre/mujer */
+let seqCancel=false;
+function playSeq(items,i){
+ if(i===undefined){seqCancel=false;i=0}
+ if(seqCancel||i>=items.length)return;
+ speak(items[i].t,0.92,items[i].v,()=>setTimeout(()=>playSeq(items,i+1),450));
+}
+function playDialogue(tid){
+ const c=CONTENT[tid],vmap=c.voices||{};
+ playSeq(c.dec.lines.map(l=>({t:l[1],v:vmap[l[0]]||'f'})));
 }
 
 /* ================= VISTAS ================= */
 const app=document.getElementById('app');
 
 function showHome(){
- window.speechSynthesis&&speechSynthesis.cancel();
+ stopAudio();seqCancel=true;
  let h=`<section class="hero">
   <div class="eyebrow">méthode · vocabulaire d'abord, grammaire ensuite</div>
   <h1>Le français,<br><em>pas à pas</em></h1>
-  <p>Primero las palabras, luego el uso, al final la regla. Tres niveles, noventa temas, una sola dirección: tu B1.</p>
+  <p>Primero las palabras, luego el uso, al final la regla. Noventa temas, exámenes tipo DELF cada cinco lecciones, una sola dirección: tu B1.</p>
  </section>
  <div class="methode">
-  <div class="titre">Ligne 7 · El método de cada tema</div>
+  <div class="titre">Ligne 9 · El método de cada tema</div>
   <div class="ligne">${PHASES.map((p,i)=>`<div class="station"><div class="dot">${i+1}</div><div class="lbl">${p.n}</div></div>`).join('')}</div>
  </div>
  <div class="grid3">`;
@@ -622,24 +1059,57 @@ function showHome(){
   h+=`<div class="lvl" onclick="showLevel('${lv}')">
    <div class="tag">${lv}</div><h3>${L.name}</h3><p>${L.desc}</p>
    <div class="prog"><i style="width:${pct}%"></i></div>
-   <div class="pct">${pct}% · 30 temas</div></div>`;
+   <div class="pct">${pct}% · 30 temas · 6 exámenes</div></div>`;
  }
  h+='</div>';
  app.innerHTML=h;window.scrollTo(0,0);
 }
 
+/* bloqueo: un tema está cerrado si hay un examen DEFINIDO anterior sin aprobar */
+function isLocked(lv,idx){
+ return (EXAM_PLAN[lv]||[]).some(e=>e.after<=idx && EXAMS[e.id] && !examPassed(e.id));
+}
+/* examen disponible: las 5 lecciones de su bloque completas (9/9 fases) y exámenes previos aprobados */
+function examAvailable(lv,e){
+ const prev=(EXAM_PLAN[lv]||[]).filter(x=>x.after<e.after);
+ if(prev.some(x=>EXAMS[x.id]&&!examPassed(x.id)))return false;
+ const block=LEVELS[lv].topics.slice(e.final?0:e.after-5,e.after);
+ return block.every(t=>topicProgress(t.id)===PHASES.length);
+}
+
 function showLevel(lv){
+ stopAudio();seqCancel=true;
  const L=LEVELS[lv];
  let h=`<div class="crumb"><a onclick="showHome()">Inicio</a> / ${lv}</div>
- <div class="lvl-head"><h2>${lv} · ${L.name}</h2><p>${L.desc}</p></div><div class="topics">`;
+ <div class="lvl-head"><h2>${lv} · ${L.name}</h2><p>${L.desc}</p>
+ <p style="font-size:.82rem;color:var(--accent);margin-top:8px">⚑ Cada 5 lecciones hay un examen (mín. 8/10). Si lo repruebas, esas lecciones se reinician y deberás cursarlas otra vez.</p></div>
+ <div class="topics">`;
+ const plan=EXAM_PLAN[lv]||[];
  L.topics.forEach((t,i)=>{
-  const has=!!CONTENT[t.id];
-  const prog=topicProgress(t.id);
-  h+=`<div class="topic ${has?'open':''}" ${has?`onclick="showTopic('${t.id}',0)"`:''}>
-   <div class="num">${String(i+1).padStart(2,'0')}</div>
-   <div><h4>${t.t}</h4><p>${t.d}</p>
-   ${has?`<span class="go">→ disponible${prog?` · ${prog}/7 fases`:''}</span>`:`<span class="soon">en préparation</span>`}
-   </div></div>`;
+  const has=!!CONTENT[t.id],locked=isLocked(lv,i),prog=topicProgress(t.id);
+  if(locked){
+   h+=`<div class="topic lockd"><div class="num">🔒</div><div><h4>${t.t}</h4><p>${t.d}</p><span class="soon">aprueba el examen anterior para desbloquear</span></div></div>`;
+  }else{
+   h+=`<div class="topic ${has?'open':''}" ${has?`onclick="showTopic('${t.id}',0)"`:''}>
+    <div class="num">${String(i+1).padStart(2,'0')}</div>
+    <div><h4>${t.t}</h4><p>${t.d}</p>
+    ${has?`<span class="go">→ disponible${prog?` · ${prog}/${PHASES.length} fases`:''}</span>`:`<span class="soon">en préparation</span>`}
+    </div></div>`;
+  }
+  /* tarjeta de examen después de cada bloque de 5 */
+  const e=plan.find(x=>x.after===i+1);
+  if(e){
+   const def=!!EXAMS[e.id],passed=examPassed(e.id),avail=def&&examAvailable(lv,e);
+   const score=state.exams[e.id];
+   let cls='exam-card'+(passed?' passed':avail?' avail':''),inner;
+   if(!def)inner=`<span class="soon">en préparation</span>`;
+   else if(passed)inner=`<span class="go">✓ aprobado · ${score}/10</span>`;
+   else if(avail)inner=`<span class="go">→ listo para presentar</span>`;
+   else inner=`<span class="soon">completa las ${e.final?'30':'5'} lecciones del bloque (todas las fases) para desbloquear${score!==undefined?` · último intento: ${score}/10`:''}</span>`;
+   h+=`<div class="topic ${cls}" ${def&&avail&&!passed?`onclick="showExam('${e.id}')"`:''} ${passed?`onclick="showExam('${e.id}')"`:''}>
+    <div class="num">📝</div><div><h4>${e.final?`Examen DELF blanc · Nivel ${lv}`:`Examen ${e.after/5} · Leçons ${e.after-4}–${e.after}`}</h4>
+    <p>Comprensión oral + lectura + estructuras · mínimo 8/10</p>${inner}</div></div>`;
+  }
  });
  h+='</div>';
  app.innerHTML=h;window.scrollTo(0,0);
@@ -648,11 +1118,11 @@ function showLevel(lv){
 function findTopic(tid){for(const lv in LEVELS){const t=LEVELS[lv].topics.find(x=>x.id===tid);if(t)return{lv,t}}return null}
 
 function showTopic(tid,phaseIdx){
- window.speechSynthesis&&speechSynthesis.cancel();
+ stopAudio();seqCancel=true;
  const {lv,t}=findTopic(tid),c=CONTENT[tid],ph=PHASES[phaseIdx];
  let h=`<div class="crumb"><a onclick="showHome()">Inicio</a> / <a onclick="showLevel('${lv}')">${lv}</a> / ${t.t}</div>
  <div class="t-head"><div class="lvl-tag">${lv} · LEÇON</div><h2>${t.t}</h2><p>${t.d}</p></div>
- <div class="ligne" style="max-width:760px;margin:0 auto">${PHASES.map((p,i)=>{
+ <div class="ligne" style="max-width:820px;margin:0 auto">${PHASES.map((p,i)=>{
    const cls=(i===phaseIdx?'now ':'')+(phaseDone(tid,p.k)?'done ':'')+'click';
    return `<div class="station ${cls}" onclick="showTopic('${tid}',${i})"><div class="dot">${phaseDone(tid,p.k)?'✓':i+1}</div><div class="lbl">${p.n}</div></div>`;
   }).join('')}</div>
@@ -663,25 +1133,27 @@ function showTopic(tid,phaseIdx){
  </div>
  <div class="nav-phases">
   ${phaseIdx>0?`<button class="btn btn-g" onclick="showTopic('${tid}',${phaseIdx-1})">← ${PHASES[phaseIdx-1].n}</button>`:'<span></span>'}
-  ${phaseIdx<6?`<button class="btn btn-p" onclick="showTopic('${tid}',${phaseIdx+1})">${PHASES[phaseIdx+1].n} →</button>`:`<button class="btn btn-ok" onclick="showLevel('${lv}')">Terminar leçon ✓</button>`}
+  ${phaseIdx<PHASES.length-1?`<button class="btn btn-p" onclick="showTopic('${tid}',${phaseIdx+1})">${PHASES[phaseIdx+1].n} →</button>`:`<button class="btn btn-ok" onclick="showLevel('${lv}')">Terminar leçon ✓</button>`}
  </div></div>`;
  app.innerHTML=h;window.scrollTo(0,0);
  if(ph.k==='dyn')initMatch(tid,c.match);
 }
 
 /* ================= RENDER DE FASES ================= */
+function vof(c,name){return (c.voices&&c.voices[name])||'f'}
 function renderPhase(tid,c,k){
  if(k==='vocab')return `<div class="vgrid">${c.vocab.map(v=>`
   <div class="vcard"><div class="row"><div><div class="fr">${v.fr}</div>${v.ipa?`<div class="ipa">${v.ipa}</div>`:''}</div>
   <button class="speak" onclick="speak('${v.fr.replace(/'/g,"\\'")}')">🔊</button></div>
   <div class="es">${v.es}</div><div class="ex">${v.ex} <button class="speak" style="padding:2px 8px;font-size:.75rem" onclick="speak('${v.ex.replace(/'/g,"\\'")}')">🔊</button></div></div>`).join('')}`;
 
- if(k==='dyn')return `<p style="margin-bottom:18px;font-size:.92rem;color:var(--ink-soft)">Une los pares francés ↔ español. Toca una tarjeta de cada columna.</p><div class="match" id="matchGame"></div><p class="fb good" id="matchWin" style="font-size:1rem">🎉 Parfait ! Pares completados.</p>`;
+ if(k==='dyn')return `<p style="margin-bottom:18px;font-size:.92rem;color:var(--ink-soft)">Une los pares. Toca una tarjeta de cada columna.</p><div class="match" id="matchGame"></div><p class="fb good" id="matchWin" style="font-size:1rem">🎉 Parfait ! Pares completados.</p>`;
 
  if(k==='dec'){const d=c.dec;return `<h4 class="display" style="font-size:1.15rem;margin-bottom:6px">${d.titre}</h4>
   <p style="font-size:.88rem;color:var(--ink-soft);margin-bottom:18px">${d.intro}</p>
-  <div style="margin-bottom:18px"><button class="btn btn-p" onclick="speak('${d.lines.map(l=>l[1]).join(' ').replace(/'/g,"\\'")}' ,0.88)">▶ Escuchar todo el diálogo</button></div>
-  <div class="dlg">${d.lines.map(l=>`<div class="dline"><div class="who">${l[0]}</div><div class="bub">${l[1]} <button class="speak" style="padding:2px 8px;font-size:.72rem" onclick="speak('${l[1].replace(/'/g,"\\'")}')">🔊</button></div></div>`).join('')}</div>`}
+  <div style="margin-bottom:18px"><button class="btn btn-p" onclick="playDialogue('${tid}')">▶ Escuchar el diálogo (voces alternadas)</button>
+  <button class="btn btn-g" onclick="seqCancel=true;stopAudio()">⏹ Detener</button></div>
+  <div class="dlg">${d.lines.map(l=>`<div class="dline"><div class="who">${l[0]} ${vof(c,l[0])==='m'?'♂':'♀'}</div><div class="bub">${l[1]} <button class="speak" style="padding:2px 8px;font-size:.72rem" onclick="speak('${l[1].replace(/'/g,"\\'")}',0.92,'${vof(c,l[0])}')">🔊</button></div></div>`).join('')}</div>`}
 
  if(k==='app')return c.app.map((q,i)=>quiz(q,'app'+i)).join('');
 
@@ -692,17 +1164,31 @@ function renderPhase(tid,c,k){
   <button class="btn btn-g" onclick="speak('${s.modele.replace(/\n/g,' ').replace(/—/g,'').replace(/'/g,"\\'")}',0.88)">▶ Escuchar el modelo</button>
   <p style="font-size:.8rem;color:var(--ink-soft);margin-top:10px">💡 ${s.tip}</p></div>`).join('');
 
- if(k==='ecoute')return `<p style="font-size:.88rem;color:var(--ink-soft);margin-bottom:18px">Escucha sin leer. Puedes repetir el audio las veces que necesites; usa la velocidad lenta si hace falta.</p>`+
+ if(k==='ecoute')return `<p style="font-size:.88rem;color:var(--ink-soft);margin-bottom:18px">Escucha sin leer. Repite el audio las veces que necesites; usa 🐢 si va muy rápido.</p>`+
   c.ecoute.map((q,i)=>`<div class="lq"><div class="play-row">
-   <button class="btn btn-p" onclick="speak('${q.audio.replace(/'/g,"\\'")}',0.9)">▶ Écouter</button>
-   <button class="btn btn-g" onclick="speak('${q.audio.replace(/'/g,"\\'")}',0.7)">🐢 Lento</button>
-   <span>Audio ${i+1}</span></div>${quiz(q,'ec'+i)}</div>`).join('');
+   <button class="btn btn-p" onclick="speak('${q.audio.replace(/'/g,"\\'")}',0.9,'${q.v||'f'}')">▶ Écouter</button>
+   <button class="btn btn-g" onclick="speak('${q.audio.replace(/'/g,"\\'")}',0.7,'${q.v||'f'}')">🐢 Lento</button>
+   <span>Audio ${i+1} ${q.v==='m'?'♂':'♀'}</span></div>${quiz(q,'ec'+i)}</div>`).join('');
 
  if(k==='gram')return `<div class="gram">${c.gram.html}</div><h4 class="display" style="font-size:1.15rem;margin:28px 0 16px">À toi ! Ejercicios</h4>`+c.gram.ex.map((q,i)=>quiz(q,'gr'+i)).join('');
+
+ if(k==='video'){const v=c.video;return `
+  <p style="font-size:.92rem;margin-bottom:6px">Francés auténtico en video. Estas búsquedas están calibradas para tu tema y nivel:</p>
+  <div class="vid-grid">${v.queries.map(q=>`<a class="vid-card" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=${encodeURIComponent(q.q)}">
+   <div class="vid-ico">▶</div><div><strong>${q.label}</strong><span>Buscar en YouTube</span></div></a>`).join('')}
+  <a class="vid-card tv5" target="_blank" rel="noopener" href="https://apprendre.tv5monde.com">
+   <div class="vid-ico">🎬</div><div><strong>TV5Monde Apprendre</strong><span>Ejercicios oficiales con video por nivel (Alliance Française)</span></div></a></div>
+  <div class="sit" style="margin-top:20px"><strong style="font-size:.82rem;letter-spacing:.06em;color:var(--blue-700)">TU MISIÓN</strong>
+  <ul>${v.mision.map(m=>`<li>${m}</li>`).join('')}</ul></div>`}
+
+ if(k==='lect'){const l=c.lect;return `<h4 class="display" style="font-size:1.15rem;margin-bottom:14px">${l.titre}</h4>
+  <div class="lect-txt">${l.texte.replace(/\n/g,'<br>')}</div>
+  <div style="margin:14px 0 24px"><button class="btn btn-g" onclick="speak('${l.texte.replace(/\n/g,' ').replace(/—/g,'').replace(/'/g,"\\'")}',0.88)">▶ Escuchar la lectura</button></div>
+  <h4 class="display" style="font-size:1.05rem;margin-bottom:14px">Compréhension</h4>`+l.qs.map((q,i)=>quiz(q,'lc'+i)).join('')}
  return '';
 }
 
-/* ---------- componente quiz ---------- */
+/* ---------- quiz formativo (con feedback) ---------- */
 let QUIZ={};
 function quiz(q,id){
  QUIZ[id]=q;
@@ -713,9 +1199,8 @@ function quiz(q,id){
 }
 function answer(id,i,el){
  const q=QUIZ[id],box=document.getElementById('q-'+id),fb=document.getElementById('fb-'+id);
- const opts=box.querySelectorAll('.opt');
  if(i===q.a){
-  opts.forEach(o=>o.classList.add('lock'));el.classList.add('ok');
+  box.querySelectorAll('.opt').forEach(o=>o.classList.add('lock'));el.classList.add('ok');
   fb.className='fb show good';fb.textContent='✓ Très bien ! '+(q.fb||'');addXP(5);
  }else{
   el.classList.add('bad','lock');
@@ -723,7 +1208,7 @@ function answer(id,i,el){
  }
 }
 
-/* ---------- juego de matching ---------- */
+/* ---------- matching ---------- */
 function initMatch(tid,pairs){
  const game=document.getElementById('matchGame');if(!game)return;
  const fr=pairs.map((p,i)=>({t:p[0],i})).sort(()=>Math.random()-0.5);
@@ -747,6 +1232,75 @@ function initMatch(tid,pairs){
    }
   };
  });
+}
+
+/* ================= EXÁMENES ================= */
+let EXAM_ANS={},EXAM_PLAYS={};
+function showExam(eid){
+ stopAudio();seqCancel=true;
+ const E=EXAMS[eid];EXAM_ANS={};EXAM_PLAYS={};
+ const passed=examPassed(eid);
+ let n=0;
+ const eq=(q,id)=>{const opts=q.opts.map((o,i)=>({o,i})).sort(()=>Math.random()-0.5);
+  return `<div class="q" id="q-${id}"><div class="stem"><b>${++n}.</b> ${q.stem}</div>
+  <div class="opts">${opts.map(x=>`<div class="opt" onclick="examSel('${id}',${x.i},this)">${x.o}</div>`).join('')}</div></div>`};
+ let h=`<div class="crumb"><a onclick="showHome()">Inicio</a> / <a onclick="showLevel('${E.lv}')">${E.lv}</a> / Examen</div>
+ <div class="t-head"><div class="lvl-tag">${E.lv} · EXAMEN ${passed?'· ✓ APROBADO '+state.exams[eid]+'/10':''}</div><h2>${E.name}</h2><p>${E.desc}</p></div>
+ <div class="phase-box"><h3>Partie 1 · Compréhension orale</h3><div class="sub">Cada audio se reproduce máximo 2 veces, como en el DELF real.</div>`;
+ E.co.forEach((q,i)=>{h+=`<div class="lq"><div class="play-row">
+  <button class="btn btn-p" id="play-co${i}" onclick="examPlay('co${i}','${q.audio.replace(/'/g,"\\'")}','${q.v||'f'}')">▶ Écouter (2 restantes)</button>
+  <span>Document ${i+1}</span></div>${eq(q,'xco'+i)}</div>`});
+ h+=`</div><div class="phase-box"><h3>Partie 2 · Compréhension écrite</h3><div class="sub">${E.ce.titre}</div>
+ <div class="lect-txt">${E.ce.texte.replace(/\n/g,'<br>')}</div><div style="height:18px"></div>`;
+ E.ce.qs.forEach((q,i)=>h+=eq(q,'xce'+i));
+ h+=`</div><div class="phase-box"><h3>Partie 3 · Structures de la langue</h3><div class="sub">Gramática y vocabulario de las lecciones del bloque.</div>`;
+ E.gram.forEach((q,i)=>h+=eq(q,'xgr'+i));
+ h+=`</div><div class="phase-box"><h3>Partie 4 · Production écrite et orale</h3>
+ <div class="sub">Estas dos partes las evalúa tu profesor con la rúbrica — no cuentan para la calificación automática.</div>
+ <div class="sit"><h4>✍ Écrite</h4><p style="font-size:.9rem">${E.pe.consigne}</p><ul>${E.pe.rubric.map(r=>`<li>${r}</li>`).join('')}</ul>
+ <textarea class="exam-ta" placeholder="Escribe aquí tu texto (puedes copiarlo para entregarlo)…"></textarea></div>
+ <div class="sit"><h4>🎙 Orale</h4><p style="font-size:.9rem">${E.po.consigne}</p><ul>${E.po.rubric.map(r=>`<li>${r}</li>`).join('')}</ul></div>
+ </div>
+ <div class="phase-box" id="examEnd">
+  <h3>Terminar</h3><div class="sub">Calificación automática sobre las partes 1–3 (${E.co.length+E.ce.qs.length+E.gram.length} reactivos). Mínimo para aprobar: ${PASS_MARK}/10. ⚠ Si repruebas, las lecciones del bloque se reinician.</div>
+  <button class="btn btn-p" onclick="gradeExam('${eid}')">Entregar examen</button>
+  <div id="examResult"></div>
+ </div>`;
+ app.innerHTML=h;window.scrollTo(0,0);
+}
+function examSel(id,i,el){
+ EXAM_ANS[id]=i;
+ el.parentElement.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+ el.classList.add('sel');
+}
+function examPlay(key,text,v){
+ EXAM_PLAYS[key]=(EXAM_PLAYS[key]||0)+1;
+ const b=document.getElementById('play-'+key);
+ if(EXAM_PLAYS[key]>=2){b.disabled=true;b.textContent='▶ Écouter (0 restantes)'}
+ else b.textContent='▶ Écouter (1 restante)';
+ speak(text,0.9,v);
+}
+function gradeExam(eid){
+ const E=EXAMS[eid];
+ const all=[...E.co.map((q,i)=>['xco'+i,q]),...E.ce.qs.map((q,i)=>['xce'+i,q]),...E.gram.map((q,i)=>['xgr'+i,q])];
+ const missing=all.filter(([id])=>EXAM_ANS[id]===undefined).length;
+ if(missing){alert('Te faltan '+missing+' reactivos por responder.');return}
+ const correct=all.filter(([id,q])=>EXAM_ANS[id]===q.a).length;
+ const score=Math.round(correct/all.length*100)/10;
+ state.exams[eid]=score;
+ const R=document.getElementById('examResult');
+ if(score>=PASS_MARK){
+  addXP(100);save();
+  R.innerHTML=`<div class="exam-res pass">🎉 <b>Félicitations !</b> Calificación: <b>${score}/10</b> (${correct}/${all.length} correctas). Bloque desbloqueado · +100 XP.<br><button class="btn btn-ok" style="margin-top:12px" onclick="showLevel('${E.lv}')">Continuar al siguiente bloque →</button></div>`;
+ }else{
+  /* reprobado: se reinician las lecciones del bloque */
+  const plan=EXAM_PLAN[E.lv].find(x=>x.id===eid);
+  const block=LEVELS[E.lv].topics.slice(plan.final?0:plan.after-5,plan.after);
+  block.forEach(t=>{delete state.done[t.id]});
+  save();
+  R.innerHTML=`<div class="exam-res fail">Calificación: <b>${score}/10</b> (${correct}/${all.length} correctas). Necesitas mínimo ${PASS_MARK}/10.<br>Las lecciones del bloque se han reiniciado: repásalas completas y vuelve a presentar. <i>Courage — c'est comme ça qu'on apprend !</i><br><button class="btn btn-p" style="margin-top:12px" onclick="showLevel('${E.lv}')">Volver a las lecciones</button></div>`;
+ }
+ document.getElementById('examEnd').scrollIntoView({behavior:'smooth'});
 }
 
 /* ================= INIT ================= */

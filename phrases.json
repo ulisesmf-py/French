@@ -1,116 +1,1146 @@
 [
- "Bonjour",
- "Bonjour, madame !",
- "Bonsoir",
- "Bonsoir, monsieur Dupont.",
- "Salut",
- "Salut, Marie ! Ça va ?",
- "Au revoir",
- "Au revoir, à demain !",
- "Merci beaucoup",
- "Merci beaucoup, madame.",
- "De rien",
- "— Merci ! — De rien !",
- "S'il vous plaît",
- "Un café, s'il vous plaît.",
- "Je m'appelle…",
- "Je m'appelle Ulises.",
- "Comment vous appelez-vous ?",
- "Bonjour ! Comment vous appelez-vous ?",
- "Enchanté / Enchantée",
- "Enchanté, madame Leroy !",
- "Ça va ?",
- "Salut Paul, ça va ? — Oui, ça va bien, merci.",
- "J'habite à…",
- "J'habite à Mexico.",
- "À bientôt",
- "Au revoir, à bientôt !",
- "Merci",
- "Enchanté",
- "Bonjour ! Je m'appelle Claire. Et vous ?",
- "Bonjour, Claire. Je m'appelle Diego. Enchanté !",
- "Enchantée, Diego. Vous êtes étudiant ?",
- "Oui, je suis étudiant en musique. Et vous ?",
- "Moi, je suis professeure de français. Vous habitez ici ?",
- "Oui, j'habite à Lyon.",
- "Eh bien, à bientôt, Diego !",
- "Au revoir, Claire !",
- "Bonjour ! Je m'appelle Claire. Et vous ? Bonjour, Claire. Je m'appelle Diego. Enchanté ! Enchantée, Diego. Vous êtes étudiant ? Oui, je suis étudiant en musique. Et vous ? Moi, je suis professeure de français. Vous habitez ici ? Oui, j'habite à Lyon. Eh bien, à bientôt, Diego ! Au revoir, Claire !",
- "Bonsoir, madame. Bonsoir, monsieur. Comment vous appelez-vous ? Je m'appelle Diego Ramírez. Très bien… voici votre clé. Chambre 12. Merci beaucoup, madame. Bonne soirée !",
- "Salut ! Ça va ? Oui, ça va ! Tu t'appelles comment ? Je m'appelle Sofía. Et toi ? Moi, c'est Karim. J'habite à Buenavista. Et toi ? Moi aussi ! À bientôt, Karim !",
- "Diego, je te présente Claire. Enchanté, Claire ! Enchantée ! Ça va ? Oui, très bien, merci. Et vous ? Ça va bien ! À bientôt, Claire !",
- "Bonsoir, madame Martin !",
- "Je m'appelle Sophie et j'habite à Marseille.",
- "Salut Thomas ! Ça va ? — Oui, ça va très bien, merci !",
- "Enchanté, monsieur. Moi, je m'appelle Pierre Durand.",
- "faire la grasse matinée",
- "Le dimanche, je fais la grasse matinée.",
- "se promener",
- "Nous nous sommes promenés au parc.",
- "rendre visite à",
- "J'ai rendu visite à mes grands-parents.",
- "faire les courses",
- "Samedi matin, on a fait les courses.",
- "regarder une série",
- "J'ai regardé une série toute la soirée.",
- "sortir avec des amis",
- "Elle est sortie avec ses amis samedi soir.",
- "se reposer",
- "Je me suis bien reposé ce week-end.",
- "ranger la maison",
- "Il a rangé toute la maison dimanche.",
- "assister à un concert",
- "J'ai assisté à un concert de jazz.",
- "rentrer tard",
- "Nous sommes rentrés tard dimanche soir.",
- "ranger",
- "rentrer",
- "les courses",
- "Salut Karim ! Tu as passé un bon week-end ?",
- "Excellent ! Samedi, j'ai assisté à un concert de jazz, et dimanche, j'ai fait la grasse matinée. Et toi ?",
- "Moi, je suis allée chez mes parents. Nous nous sommes promenés au bord du lac et nous avons beaucoup mangé !",
- "Tu es rentrée tard ?",
- "Oui, je suis rentrée à minuit. Je suis fatiguée ce matin !",
- "Courage ! La semaine commence…",
- "Salut Karim ! Tu as passé un bon week-end ? Excellent ! Samedi, j'ai assisté à un concert de jazz, et dimanche, j'ai fait la grasse matinée. Et toi ? Moi, je suis allée chez mes parents. Nous nous sommes promenés au bord du lac et nous avons beaucoup mangé ! Tu es rentrée tard ? Oui, je suis rentrée à minuit. Je suis fatiguée ce matin ! Courage ! La semaine commence…",
- "Tu as passé un bon week-end ? Oui, super ! Samedi, j'ai fait les courses et le soir, je suis sorti avec des amis. Dimanche, j'ai fait la grasse matinée. Et toi ?",
- "Allô ? Devine quoi : hier soir, j'ai assisté au concert de Stromae ! Non ! C'était comment ? C'était génial ! Je suis rentré à deux heures du matin.",
- "Qu'est-ce que tu as fait samedi ? Le matin, j'ai rangé la maison, et l'après-midi, je me suis promené au parc.",
- "Samedi soir, je suis sortie avec mes amies et nous avons dansé toute la nuit.",
- "Dimanche, Paul a rangé la maison et ensuite il s'est reposé.",
- "Nous avons rendu visite à notre tante à Toulouse. Nous sommes rentrés très tard.",
- "à mon avis",
- "À mon avis, ce film est génial.",
- "je trouve que",
- "Je trouve que cette chanson est magnifique.",
- "en revanche",
- "Le film est long ; en revanche, il est passionnant.",
- "par contre",
- "J'aime le rock ; par contre, je déteste le reggaeton.",
- "néanmoins",
- "C'est cher ; néanmoins, la qualité est excellente.",
- "être d'accord avec",
- "Je suis d'accord avec toi.",
- "ne pas être du tout d'accord",
- "Je ne suis pas du tout d'accord avec cette décision.",
- "ça dépend",
- "— Tu préfères le cinéma ou les séries ? — Ça dépend.",
- "avoir raison / avoir tort",
- "Tu as raison, c'est une excellente idée.",
- "convaincre",
- "Il a réussi à me convaincre.",
- "avoir tort",
- "À mon avis, il faut limiter les téléphones en classe. Je trouve que les élèves sont trop distraits.",
- "Je ne suis pas du tout d'accord ! Les téléphones font partie de notre vie.",
- "En revanche, je pense qu'on peut les utiliser pour certaines activités pédagogiques.",
- "Là, tu as raison. Néanmoins, il faut des règles claires.",
- "Tout à fait. Au fond, ça dépend de chaque situation.",
- "Tu vois ? Tu as réussi à me convaincre… un peu !",
- "À mon avis, il faut limiter les téléphones en classe. Je trouve que les élèves sont trop distraits. Je ne suis pas du tout d'accord ! Les téléphones font partie de notre vie. En revanche, je pense qu'on peut les utiliser pour certaines activités pédagogiques. Là, tu as raison. Néanmoins, il faut des règles claires. Tout à fait. Au fond, ça dépend de chaque situation. Tu vois ? Tu as réussi à me convaincre… un peu !",
- "À mon avis, le streaming va remplacer le cinéma. Je ne suis pas d'accord ! Je trouve que l'expérience du cinéma est unique. En revanche, c'est vrai que c'est cher. Tu as raison. Néanmoins, rien ne remplace un grand écran !",
- "À mon avis, le télétravail a beaucoup d'avantages : on gagne du temps. En revanche, je trouve que la communication est plus difficile. Au fond, ça dépend des équipes.",
- "Je ne suis pas du tout d'accord ! Je trouve que le jazz demande une technique incroyable. Écoute ce morceau et après, on en reparle !",
- "Je pense que tu as raison, mais ça dépend du contexte, non ?",
- "Je ne suis pas du tout d'accord avec cette décision ! C'est une erreur.",
- "À mon avis, c'est la meilleure solution ; néanmoins, il faut être prudents."
+ {
+  "t": "Bonjour",
+  "v": "f"
+ },
+ {
+  "t": "Bonjour, madame !",
+  "v": "f"
+ },
+ {
+  "t": "Bonsoir",
+  "v": "f"
+ },
+ {
+  "t": "Bonsoir, monsieur Dupont.",
+  "v": "f"
+ },
+ {
+  "t": "Salut",
+  "v": "f"
+ },
+ {
+  "t": "Salut, Marie ! Ça va ?",
+  "v": "f"
+ },
+ {
+  "t": "Au revoir",
+  "v": "f"
+ },
+ {
+  "t": "Au revoir, à demain !",
+  "v": "f"
+ },
+ {
+  "t": "Merci beaucoup",
+  "v": "f"
+ },
+ {
+  "t": "Merci beaucoup, madame.",
+  "v": "f"
+ },
+ {
+  "t": "De rien",
+  "v": "f"
+ },
+ {
+  "t": "— Merci ! — De rien !",
+  "v": "f"
+ },
+ {
+  "t": "S'il vous plaît",
+  "v": "f"
+ },
+ {
+  "t": "Un café, s'il vous plaît.",
+  "v": "f"
+ },
+ {
+  "t": "Je m'appelle…",
+  "v": "f"
+ },
+ {
+  "t": "Je m'appelle Ulises.",
+  "v": "f"
+ },
+ {
+  "t": "Comment vous appelez-vous ?",
+  "v": "f"
+ },
+ {
+  "t": "Bonjour ! Comment vous appelez-vous ?",
+  "v": "f"
+ },
+ {
+  "t": "Enchanté / Enchantée",
+  "v": "f"
+ },
+ {
+  "t": "Enchanté, madame Leroy !",
+  "v": "f"
+ },
+ {
+  "t": "Ça va ?",
+  "v": "f"
+ },
+ {
+  "t": "Salut Paul, ça va ? — Oui, ça va bien, merci.",
+  "v": "f"
+ },
+ {
+  "t": "J'habite à…",
+  "v": "f"
+ },
+ {
+  "t": "J'habite à Mexico.",
+  "v": "f"
+ },
+ {
+  "t": "À bientôt",
+  "v": "f"
+ },
+ {
+  "t": "Au revoir, à bientôt !",
+  "v": "f"
+ },
+ {
+  "t": "Merci",
+  "v": "f"
+ },
+ {
+  "t": "Enchanté",
+  "v": "f"
+ },
+ {
+  "t": "Bonjour ! Je m'appelle Claire. Et vous ?",
+  "v": "f"
+ },
+ {
+  "t": "Bonjour, Claire. Je m'appelle Diego. Enchanté !",
+  "v": "m"
+ },
+ {
+  "t": "Enchantée, Diego. Vous êtes étudiant ?",
+  "v": "f"
+ },
+ {
+  "t": "Oui, je suis étudiant en musique. Et vous ?",
+  "v": "m"
+ },
+ {
+  "t": "Moi, je suis professeure de français. Vous habitez ici ?",
+  "v": "f"
+ },
+ {
+  "t": "Oui, j'habite à Lyon.",
+  "v": "m"
+ },
+ {
+  "t": "Eh bien, à bientôt, Diego !",
+  "v": "f"
+ },
+ {
+  "t": "Au revoir, Claire !",
+  "v": "m"
+ },
+ {
+  "t": "Bonsoir, madame. Bonsoir, monsieur. Comment vous appelez-vous ? Je m'appelle Diego Ramírez. Très bien… voici votre clé. Chambre 12. Merci beaucoup, madame. Bonne soirée !",
+  "v": "f"
+ },
+ {
+  "t": "Salut ! Ça va ? Oui, ça va ! Tu t'appelles comment ? Je m'appelle Sofía. Et toi ? Moi, c'est Karim. J'habite à Buenavista. Et toi ? Moi aussi ! À bientôt, Karim !",
+  "v": "f"
+ },
+ {
+  "t": "Diego, je te présente Claire. Enchanté, Claire ! Enchantée ! Ça va ? Oui, très bien, merci. Et vous ? Ça va bien ! À bientôt, Claire !",
+  "v": "f"
+ },
+ {
+  "t": "Bonsoir, madame Martin !",
+  "v": "f"
+ },
+ {
+  "t": "Je m'appelle Sophie et j'habite à Marseille.",
+  "v": "f"
+ },
+ {
+  "t": "Salut Thomas ! Ça va ? — Oui, ça va très bien, merci !",
+  "v": "f"
+ },
+ {
+  "t": "Enchanté, monsieur. Moi, je m'appelle Pierre Durand.",
+  "v": "f"
+ },
+ {
+  "t": "Bonjour à tous ! Je m'appelle Clara Dubois. Je suis française et j'habite à Bordeaux. Je suis professeure d'espagnol. Et vous ? Comment vous appelez-vous ? Vous habitez où ? À bientôt ! Clara",
+  "v": "f"
+ },
+ {
+  "t": "faire la grasse matinée",
+  "v": "f"
+ },
+ {
+  "t": "Le dimanche, je fais la grasse matinée.",
+  "v": "f"
+ },
+ {
+  "t": "se promener",
+  "v": "f"
+ },
+ {
+  "t": "Nous nous sommes promenés au parc.",
+  "v": "f"
+ },
+ {
+  "t": "rendre visite à",
+  "v": "f"
+ },
+ {
+  "t": "J'ai rendu visite à mes grands-parents.",
+  "v": "f"
+ },
+ {
+  "t": "faire les courses",
+  "v": "f"
+ },
+ {
+  "t": "Samedi matin, on a fait les courses.",
+  "v": "f"
+ },
+ {
+  "t": "regarder une série",
+  "v": "f"
+ },
+ {
+  "t": "J'ai regardé une série toute la soirée.",
+  "v": "f"
+ },
+ {
+  "t": "sortir avec des amis",
+  "v": "f"
+ },
+ {
+  "t": "Elle est sortie avec ses amis samedi soir.",
+  "v": "f"
+ },
+ {
+  "t": "se reposer",
+  "v": "f"
+ },
+ {
+  "t": "Je me suis bien reposé ce week-end.",
+  "v": "f"
+ },
+ {
+  "t": "ranger la maison",
+  "v": "f"
+ },
+ {
+  "t": "Il a rangé toute la maison dimanche.",
+  "v": "f"
+ },
+ {
+  "t": "assister à un concert",
+  "v": "f"
+ },
+ {
+  "t": "J'ai assisté à un concert de jazz.",
+  "v": "f"
+ },
+ {
+  "t": "rentrer tard",
+  "v": "f"
+ },
+ {
+  "t": "Nous sommes rentrés tard dimanche soir.",
+  "v": "f"
+ },
+ {
+  "t": "ranger",
+  "v": "f"
+ },
+ {
+  "t": "rentrer",
+  "v": "f"
+ },
+ {
+  "t": "les courses",
+  "v": "f"
+ },
+ {
+  "t": "Salut Karim ! Tu as passé un bon week-end ?",
+  "v": "f"
+ },
+ {
+  "t": "Excellent ! Samedi, j'ai assisté à un concert de jazz, et dimanche, j'ai fait la grasse matinée. Et toi ?",
+  "v": "m"
+ },
+ {
+  "t": "Moi, je suis allée chez mes parents. Nous nous sommes promenés au bord du lac et nous avons beaucoup mangé !",
+  "v": "f"
+ },
+ {
+  "t": "Tu es rentrée tard ?",
+  "v": "m"
+ },
+ {
+  "t": "Oui, je suis rentrée à minuit. Je suis fatiguée ce matin !",
+  "v": "f"
+ },
+ {
+  "t": "Courage ! La semaine commence…",
+  "v": "m"
+ },
+ {
+  "t": "Tu as passé un bon week-end ? Oui, super ! Samedi, j'ai fait les courses et le soir, je suis sorti avec des amis. Dimanche, j'ai fait la grasse matinée. Et toi ?",
+  "v": "f"
+ },
+ {
+  "t": "Allô ? Devine quoi : hier soir, j'ai assisté au concert de Stromae ! Non ! C'était comment ? C'était génial ! Je suis rentré à deux heures du matin.",
+  "v": "f"
+ },
+ {
+  "t": "Qu'est-ce que tu as fait samedi ? Le matin, j'ai rangé la maison, et l'après-midi, je me suis promené au parc.",
+  "v": "f"
+ },
+ {
+  "t": "Samedi soir, je suis sortie avec mes amies et nous avons dansé toute la nuit.",
+  "v": "f"
+ },
+ {
+  "t": "Dimanche, Paul a rangé la maison et ensuite il s'est reposé.",
+  "v": "f"
+ },
+ {
+  "t": "Nous avons rendu visite à notre tante à Toulouse. Nous sommes rentrés très tard.",
+  "v": "f"
+ },
+ {
+  "t": "Samedi matin, je suis parti très tôt avec ma copine. Nous sommes arrivés à Annecy à dix heures. D'abord, nous nous sommes promenés au bord du lac, puis nous avons mangé une fondue délicieuse dans un petit restaurant. L'après-midi, j'ai visité la vieille ville et ma copine a fait les boutiques. Le soir, nous avons assisté à un concert sur la place. Dimanche, il a plu toute la journée, alors nous sommes rentrés à Lyon. Quel beau week-end !",
+  "v": "f"
+ },
+ {
+  "t": "à mon avis",
+  "v": "f"
+ },
+ {
+  "t": "À mon avis, ce film est génial.",
+  "v": "f"
+ },
+ {
+  "t": "je trouve que",
+  "v": "f"
+ },
+ {
+  "t": "Je trouve que cette chanson est magnifique.",
+  "v": "f"
+ },
+ {
+  "t": "en revanche",
+  "v": "f"
+ },
+ {
+  "t": "Le film est long ; en revanche, il est passionnant.",
+  "v": "f"
+ },
+ {
+  "t": "par contre",
+  "v": "f"
+ },
+ {
+  "t": "J'aime le rock ; par contre, je déteste le reggaeton.",
+  "v": "f"
+ },
+ {
+  "t": "néanmoins",
+  "v": "f"
+ },
+ {
+  "t": "C'est cher ; néanmoins, la qualité est excellente.",
+  "v": "f"
+ },
+ {
+  "t": "être d'accord avec",
+  "v": "f"
+ },
+ {
+  "t": "Je suis d'accord avec toi.",
+  "v": "f"
+ },
+ {
+  "t": "ne pas être du tout d'accord",
+  "v": "f"
+ },
+ {
+  "t": "Je ne suis pas du tout d'accord avec cette décision.",
+  "v": "f"
+ },
+ {
+  "t": "ça dépend",
+  "v": "f"
+ },
+ {
+  "t": "— Tu préfères le cinéma ou les séries ? — Ça dépend.",
+  "v": "f"
+ },
+ {
+  "t": "avoir raison / avoir tort",
+  "v": "f"
+ },
+ {
+  "t": "Tu as raison, c'est une excellente idée.",
+  "v": "f"
+ },
+ {
+  "t": "convaincre",
+  "v": "f"
+ },
+ {
+  "t": "Il a réussi à me convaincre.",
+  "v": "f"
+ },
+ {
+  "t": "avoir tort",
+  "v": "f"
+ },
+ {
+  "t": "À mon avis, il faut limiter les téléphones en classe. Je trouve que les élèves sont trop distraits.",
+  "v": "f"
+ },
+ {
+  "t": "Je ne suis pas du tout d'accord ! Les téléphones font partie de notre vie.",
+  "v": "m"
+ },
+ {
+  "t": "En revanche, je pense qu'on peut les utiliser pour certaines activités pédagogiques.",
+  "v": "f"
+ },
+ {
+  "t": "Là, tu as raison. Néanmoins, il faut des règles claires.",
+  "v": "m"
+ },
+ {
+  "t": "Tout à fait. Au fond, ça dépend de chaque situation.",
+  "v": "f"
+ },
+ {
+  "t": "Tu vois ? Tu as réussi à me convaincre… un peu !",
+  "v": "m"
+ },
+ {
+  "t": "À mon avis, le streaming va remplacer le cinéma. Je ne suis pas d'accord ! Je trouve que l'expérience du cinéma est unique. En revanche, c'est vrai que c'est cher. Tu as raison. Néanmoins, rien ne remplace un grand écran !",
+  "v": "f"
+ },
+ {
+  "t": "À mon avis, le télétravail a beaucoup d'avantages : on gagne du temps. En revanche, je trouve que la communication est plus difficile. Au fond, ça dépend des équipes.",
+  "v": "f"
+ },
+ {
+  "t": "Je ne suis pas du tout d'accord ! Je trouve que le jazz demande une technique incroyable. Écoute ce morceau et après, on en reparle !",
+  "v": "f"
+ },
+ {
+  "t": "Je pense que tu as raison, mais ça dépend du contexte, non ?",
+  "v": "f"
+ },
+ {
+  "t": "Je ne suis pas du tout d'accord avec cette décision ! C'est une erreur.",
+  "v": "f"
+ },
+ {
+  "t": "À mon avis, c'est la meilleure solution ; néanmoins, il faut être prudents.",
+  "v": "f"
+ },
+ {
+  "t": "À mon avis, les réseaux sociaux ont transformé notre façon de communiquer. Je trouve qu'ils nous permettent de rester en contact avec nos proches, même à distance. En revanche, beaucoup d'experts pensent que nous passons trop de temps devant nos écrans. Néanmoins, le problème n'est pas l'outil : c'est notre usage. Personnellement, je ne pense pas que la solution soit d'interdire ces plateformes. Il faut plutôt apprendre à les utiliser avec modération. Au fond, ça dépend de chacun.",
+  "v": "f"
+ },
+ {
+  "t": "Comment ça s'écrit ?",
+  "v": "f"
+ },
+ {
+  "t": "Ramírez ? Comment ça s'écrit ?",
+  "v": "f"
+ },
+ {
+  "t": "Ça s'écrit…",
+  "v": "f"
+ },
+ {
+  "t": "Ça s'écrit P, A, U, L.",
+  "v": "f"
+ },
+ {
+  "t": "Vous pouvez épeler, s'il vous plaît ?",
+  "v": "f"
+ },
+ {
+  "t": "Votre nom ? Vous pouvez épeler, s'il vous plaît ?",
+  "v": "f"
+ },
+ {
+  "t": "l'accent aigu (é)",
+  "v": "f"
+ },
+ {
+  "t": "Café : C, A, F, E accent aigu.",
+  "v": "f"
+ },
+ {
+  "t": "l'accent grave (è)",
+  "v": "f"
+ },
+ {
+  "t": "Père : P, E accent grave, R, E.",
+  "v": "f"
+ },
+ {
+  "t": "l'accent circonflexe (ê)",
+  "v": "f"
+ },
+ {
+  "t": "Fête : F, E accent circonflexe, T, E.",
+  "v": "f"
+ },
+ {
+  "t": "la cédille (ç)",
+  "v": "f"
+ },
+ {
+  "t": "Garçon : G, A, R, C cédille, O, N.",
+  "v": "f"
+ },
+ {
+  "t": "le tréma (ë)",
+  "v": "f"
+ },
+ {
+  "t": "Noël : N, O, E tréma, L.",
+  "v": "f"
+ },
+ {
+  "t": "l'apostrophe",
+  "v": "f"
+ },
+ {
+  "t": "L'école : L, apostrophe, E…",
+  "v": "f"
+ },
+ {
+  "t": "le tiret",
+  "v": "f"
+ },
+ {
+  "t": "Jean-Paul : Jean, tiret, Paul.",
+  "v": "f"
+ },
+ {
+  "t": "majuscule / minuscule",
+  "v": "f"
+ },
+ {
+  "t": "P majuscule, comme Paris.",
+  "v": "f"
+ },
+ {
+  "t": "arobase (@) / point",
+  "v": "f"
+ },
+ {
+  "t": "marie point dupont arobase mail point com.",
+  "v": "f"
+ },
+ {
+  "t": "é",
+  "v": "f"
+ },
+ {
+  "t": "è",
+  "v": "f"
+ },
+ {
+  "t": "ê",
+  "v": "f"
+ },
+ {
+  "t": "ç",
+  "v": "f"
+ },
+ {
+  "t": "ë",
+  "v": "f"
+ },
+ {
+  "t": "@",
+  "v": "f"
+ },
+ {
+  "t": "Bonjour ! Votre prénom, s'il vous plaît ?",
+  "v": "f"
+ },
+ {
+  "t": "Diego.",
+  "v": "m"
+ },
+ {
+  "t": "D, I, E, G, O.",
+  "v": "m"
+ },
+ {
+  "t": "Merci. Et votre nom de famille ?",
+  "v": "f"
+ },
+ {
+  "t": "Ramírez. Ça s'écrit R, A, M, I accent aigu, R, E, Z.",
+  "v": "m"
+ },
+ {
+  "t": "Parfait. Votre adresse e-mail ?",
+  "v": "f"
+ },
+ {
+  "t": "diego point ramirez arobase mail point com. Tout en minuscules.",
+  "v": "m"
+ },
+ {
+  "t": "C'est noté. Merci, monsieur Ramírez !",
+  "v": "f"
+ },
+ {
+  "t": "C'est à quel nom ? Au nom de García : G, A, R, C, I accent aigu, A. Très bien, monsieur García. À ce soir !",
+  "v": "f"
+ },
+ {
+  "t": "Votre e-mail, s'il vous plaît ? C'est ulises point martinez arobase gmail point com. Tout en minuscules. Merci !",
+  "v": "f"
+ },
+ {
+  "t": "Je m'appelle madame Beaulieu. Pardon, vous pouvez épeler, s'il vous plaît ? B, E, A, U, L, I, E, U. B, E, A, U, L, I, E, U. Merci beaucoup !",
+  "v": "f"
+ },
+ {
+  "t": "Ça s'écrit M, A, R, I, E.",
+  "v": "f"
+ },
+ {
+  "t": "Mon nom, c'est Lefèvre : L, E, F, E accent grave, V, R, E.",
+  "v": "m"
+ },
+ {
+  "t": "Mon adresse, c'est paul point durand arobase mail point fr.",
+  "v": "m"
+ },
+ {
+  "t": "Ça s'écrit avec un F majuscule, comme France.",
+  "v": "f"
+ },
+ {
+  "t": "ÉCOLE DE FRANÇAIS « LUMIÈRE » Fiche d'inscription Prénom : Valérie Nom : Lefèvre (L, E, F, E accent grave, V, R, E) Nationalité : française E-mail : valerie.lefevre@mail.fr (tout en minuscules) Ville : Besançon Note du secrétariat : Attention, le nom s'écrit avec un accent grave, et le prénom avec un accent aigu !",
+  "v": "f"
+ },
+ {
+  "t": "zéro, un, deux, trois",
+  "v": "f"
+ },
+ {
+  "t": "Un, deux, trois… partez !",
+  "v": "f"
+ },
+ {
+  "t": "quatre, cinq, six",
+  "v": "f"
+ },
+ {
+  "t": "J'ai quatre frères.",
+  "v": "f"
+ },
+ {
+  "t": "sept, huit, neuf, dix",
+  "v": "f"
+ },
+ {
+  "t": "Le cours commence à dix heures.",
+  "v": "f"
+ },
+ {
+  "t": "onze, douze, treize",
+  "v": "f"
+ },
+ {
+  "t": "Ouvrez à la page douze.",
+  "v": "f"
+ },
+ {
+  "t": "quatorze, quinze, seize",
+  "v": "f"
+ },
+ {
+  "t": "Elle a quinze ans.",
+  "v": "f"
+ },
+ {
+  "t": "dix-sept, dix-huit, dix-neuf",
+  "v": "f"
+ },
+ {
+  "t": "Mon frère a dix-huit ans.",
+  "v": "f"
+ },
+ {
+  "t": "vingt",
+  "v": "f"
+ },
+ {
+  "t": "Vingt euros, s'il vous plaît.",
+  "v": "f"
+ },
+ {
+  "t": "trente",
+  "v": "f"
+ },
+ {
+  "t": "La page trente, s'il vous plaît.",
+  "v": "f"
+ },
+ {
+  "t": "quarante",
+  "v": "f"
+ },
+ {
+  "t": "Mon père a quarante ans.",
+  "v": "f"
+ },
+ {
+  "t": "cinquante",
+  "v": "f"
+ },
+ {
+  "t": "Ça coûte cinquante euros.",
+  "v": "f"
+ },
+ {
+  "t": "soixante",
+  "v": "f"
+ },
+ {
+  "t": "Ma grand-mère a soixante ans.",
+  "v": "f"
+ },
+ {
+  "t": "Quel âge avez-vous ?",
+  "v": "f"
+ },
+ {
+  "t": "Quel âge avez-vous ? — J'ai vingt-cinq ans.",
+  "v": "f"
+ },
+ {
+  "t": "J'ai … ans",
+  "v": "f"
+ },
+ {
+  "t": "J'ai vingt et un ans.",
+  "v": "f"
+ },
+ {
+  "t": "quinze",
+  "v": "f"
+ },
+ {
+  "t": "Tu as quel âge, Léa ?",
+  "v": "m"
+ },
+ {
+  "t": "J'ai dix-neuf ans. Et toi ?",
+  "v": "f"
+ },
+ {
+  "t": "Moi, j'ai vingt et un ans.",
+  "v": "m"
+ },
+ {
+  "t": "Tu me donnes ton numéro de téléphone ?",
+  "v": "f"
+ },
+ {
+  "t": "Oui ! C'est le zéro six, trente-quatre, cinquante-deux, dix-huit, quarante-sept.",
+  "v": "m"
+ },
+ {
+  "t": "Merci ! Je t'envoie un message ce soir.",
+  "v": "f"
+ },
+ {
+  "t": "Tu as quel âge ? J'ai vingt-huit ans. Et toi ? Moi, j'ai vingt-six ans.",
+  "v": "f"
+ },
+ {
+  "t": "Tu me donnes ton numéro ? Oui, c'est le zéro six, quarante-cinq, douze, trente-trois, soixante. Merci, je t'appelle !",
+  "v": "f"
+ },
+ {
+  "t": "Bonjour, c'est pour un sondage. Quel âge avez-vous ? J'ai trente-cinq ans. Merci beaucoup. Bonne journée !",
+  "v": "f"
+ },
+ {
+  "t": "Mon numéro, c'est le zéro cinq, quarante-quatre, vingt-trois, soixante, douze.",
+  "v": "m"
+ },
+ {
+  "t": "J'ai trente-six ans et ma fille a douze ans.",
+  "v": "f"
+ },
+ {
+  "t": "Ça coûte cinquante-neuf euros.",
+  "v": "m"
+ },
+ {
+  "t": "Ouvrez le livre à la page quarante et un.",
+  "v": "f"
+ },
+ {
+  "t": "COURS DE GUITARE Professeur de musique donne cours de guitare pour débutants. Âge : de sept à soixante-cinq ans ! Prix : vingt-cinq euros l'heure. Téléphone : zéro six, quarante-deux, treize, cinquante et un, trente. Disponible le samedi de dix heures à dix-huit heures.",
+  "v": "f"
+ },
+ {
+  "t": "un livre",
+  "v": "f"
+ },
+ {
+  "t": "Ouvrez le livre, s'il vous plaît.",
+  "v": "f"
+ },
+ {
+  "t": "un cahier",
+  "v": "f"
+ },
+ {
+  "t": "J'écris dans mon cahier.",
+  "v": "f"
+ },
+ {
+  "t": "un stylo",
+  "v": "f"
+ },
+ {
+  "t": "Tu as un stylo bleu ?",
+  "v": "f"
+ },
+ {
+  "t": "un crayon",
+  "v": "f"
+ },
+ {
+  "t": "Je dessine avec un crayon.",
+  "v": "f"
+ },
+ {
+  "t": "une gomme",
+  "v": "f"
+ },
+ {
+  "t": "Tu me prêtes ta gomme ?",
+  "v": "f"
+ },
+ {
+  "t": "une chaise",
+  "v": "f"
+ },
+ {
+  "t": "Il y a vingt chaises dans la classe.",
+  "v": "f"
+ },
+ {
+  "t": "le tableau",
+  "v": "f"
+ },
+ {
+  "t": "Regardez le tableau !",
+  "v": "f"
+ },
+ {
+  "t": "Écoutez !",
+  "v": "f"
+ },
+ {
+  "t": "Écoutez et répétez !",
+  "v": "f"
+ },
+ {
+  "t": "Répétez !",
+  "v": "f"
+ },
+ {
+  "t": "Répétez après moi : bonjour !",
+  "v": "f"
+ },
+ {
+  "t": "Ouvrez le livre à la page…",
+  "v": "f"
+ },
+ {
+  "t": "Ouvrez le livre à la page douze.",
+  "v": "f"
+ },
+ {
+  "t": "Je ne comprends pas",
+  "v": "f"
+ },
+ {
+  "t": "Pardon, je ne comprends pas.",
+  "v": "f"
+ },
+ {
+  "t": "Vous pouvez répéter, s'il vous plaît ?",
+  "v": "f"
+ },
+ {
+  "t": "Plus lentement, s'il vous plaît !",
+  "v": "f"
+ },
+ {
+  "t": "Comment dit-on … en français ?",
+  "v": "f"
+ },
+ {
+  "t": "Comment dit-on « pizarrón » en français ?",
+  "v": "f"
+ },
+ {
+  "t": "Bonjour à tous ! Ouvrez le livre à la page douze.",
+  "v": "f"
+ },
+ {
+  "t": "Pardon madame, je ne comprends pas. Vous pouvez répéter, s'il vous plaît ?",
+  "v": "f"
+ },
+ {
+  "t": "Bien sûr : la page douze. Écoutez et répétez : « Bonjour ! »",
+  "v": "f"
+ },
+ {
+  "t": "Madame, comment dit-on « pizarrón » en français ?",
+  "v": "m"
+ },
+ {
+  "t": "On dit « le tableau ». Regardez le tableau !",
+  "v": "f"
+ },
+ {
+  "t": "Merci, madame !",
+  "v": "m"
+ },
+ {
+  "t": "Pardon, monsieur, je ne comprends pas. Vous pouvez répéter plus lentement, s'il vous plaît ? Bien sûr !",
+  "v": "f"
+ },
+ {
+  "t": "Comment dit-on « mochila » en français ? On dit « un sac à dos ». Un sac à dos… merci !",
+  "v": "f"
+ },
+ {
+  "t": "Tu as un stylo, s'il te plaît ? Oui, tiens ! Merci ! … Tiens, et merci encore. De rien !",
+  "v": "f"
+ },
+ {
+  "t": "Ouvrez le cahier à la page vingt, s'il vous plaît.",
+  "v": "f"
+ },
+ {
+  "t": "Écoutez bien et répétez après moi.",
+  "v": "m"
+ },
+ {
+  "t": "Tu me prêtes ta gomme, s'il te plaît ?",
+  "v": "f"
+ },
+ {
+  "t": "Regardez le tableau : voici le verbe être.",
+  "v": "m"
+ },
+ {
+  "t": "CLASSE DE FRANÇAIS Règles d'or 1. Écoutez le professeur et les camarades. 2. Une question ? Levez la main ! 3. Si vous ne comprenez pas, dites : « Je ne comprends pas. » 4. Apportez votre livre, un cahier et un stylo. 5. Le téléphone reste dans le sac. Bienvenue et bon courage !",
+  "v": "f"
+ },
+ {
+  "t": "mexicain / mexicaine",
+  "v": "f"
+ },
+ {
+  "t": "Je suis mexicain. Elle est mexicaine.",
+  "v": "f"
+ },
+ {
+  "t": "français / française",
+  "v": "f"
+ },
+ {
+  "t": "Paul est français, Marie est française.",
+  "v": "f"
+ },
+ {
+  "t": "espagnol / espagnole",
+  "v": "f"
+ },
+ {
+  "t": "Carmen est espagnole.",
+  "v": "f"
+ },
+ {
+  "t": "américain / américaine",
+  "v": "f"
+ },
+ {
+  "t": "Il est américain, de New York.",
+  "v": "f"
+ },
+ {
+  "t": "canadien / canadienne",
+  "v": "f"
+ },
+ {
+  "t": "Elle est canadienne, de Montréal.",
+  "v": "f"
+ },
+ {
+  "t": "japonais / japonaise",
+  "v": "f"
+ },
+ {
+  "t": "Akiko est japonaise.",
+  "v": "f"
+ },
+ {
+  "t": "le Mexique",
+  "v": "f"
+ },
+ {
+  "t": "J'habite au Mexique.",
+  "v": "f"
+ },
+ {
+  "t": "la France",
+  "v": "f"
+ },
+ {
+  "t": "Elle habite en France.",
+  "v": "f"
+ },
+ {
+  "t": "les États-Unis",
+  "v": "f"
+ },
+ {
+  "t": "Ils habitent aux États-Unis.",
+  "v": "f"
+ },
+ {
+  "t": "Tu viens d'où ?",
+  "v": "f"
+ },
+ {
+  "t": "Tu viens d'où ? — Je viens du Mexique.",
+  "v": "f"
+ },
+ {
+  "t": "Je viens de / du / des…",
+  "v": "f"
+ },
+ {
+  "t": "Je viens de Guadalajara. Il vient du Japon.",
+  "v": "f"
+ },
+ {
+  "t": "Quelle est votre nationalité ?",
+  "v": "f"
+ },
+ {
+  "t": "Quelle est votre nationalité ? — Je suis mexicain.",
+  "v": "f"
+ },
+ {
+  "t": "canadienne",
+  "v": "f"
+ },
+ {
+  "t": "japonais",
+  "v": "f"
+ },
+ {
+  "t": "espagnole",
+  "v": "f"
+ },
+ {
+  "t": "Tu viens d'où, Akiko ?",
+  "v": "m"
+ },
+ {
+  "t": "Je viens du Japon, je suis japonaise. Et toi ?",
+  "v": "f"
+ },
+ {
+  "t": "Moi, je suis mexicain. Je viens de Guadalajara.",
+  "v": "m"
+ },
+ {
+  "t": "Et Sarah ? Elle est française ?",
+  "v": "f"
+ },
+ {
+  "t": "Non, elle est canadienne. Elle vient de Montréal.",
+  "v": "m"
+ },
+ {
+  "t": "On est une classe très internationale !",
+  "v": "f"
+ },
+ {
+  "t": "Salut ! Moi, c'est Ulises. Je suis mexicain, je viens de Guadalajara. Et toi, tu viens d'où ? Je viens d'Espagne, je suis espagnole !",
+  "v": "f"
+ },
+ {
+  "t": "Je te présente Akiko. Elle est japonaise, elle vient de Tokyo. Enchanté, Akiko ! Enchantée !",
+  "v": "f"
+ },
+ {
+  "t": "Bonjour. Quelle est votre nationalité ? Je suis mexicain, monsieur. Vous habitez où ? J'habite au Mexique, à Guadalajara. Très bien, bienvenue en France !",
+  "v": "f"
+ },
+ {
+  "t": "Pedro est espagnol. Il vient de Madrid.",
+  "v": "m"
+ },
+ {
+  "t": "Emma vient des États-Unis, mais elle habite en France.",
+  "v": "f"
+ },
+ {
+  "t": "Ma mère est canadienne et mon père est japonais.",
+  "v": "m"
+ },
+ {
+  "t": "Nous habitons au Mexique, à Monterrey.",
+  "v": "f"
+ },
+ {
+  "t": "BIENVENUE AUX NOUVEAUX ÉTUDIANTS ! Cette année, notre école accueille quatre étudiants internationaux : Akiko, vingt ans, est japonaise. Elle vient de Tokyo et elle adore la musique française. Mateo, vingt-deux ans, est mexicain. Il vient de Guadalajara. Sarah, dix-neuf ans, est canadienne. Elle vient de Montréal et elle parle déjà très bien français ! Tom, vingt et un ans, est américain. Il vient des États-Unis, de Chicago. Bienvenue à tous !",
+  "v": "f"
+ },
+ {
+  "t": "Bonjour ! Je m'appelle Hugo, j'ai vingt-trois ans et je suis belge.",
+  "v": "m"
+ },
+ {
+  "t": "Mon numéro de téléphone, c'est le zéro six, quinze, quarante, trente-deux, soixante.",
+  "v": "f"
+ },
+ {
+  "t": "Ouvrez le cahier à la page trente, s'il vous plaît, et écoutez bien.",
+  "v": "m"
+ },
+ {
+  "t": "Elle s'appelle Yuki, elle est japonaise et elle habite à Lyon.",
+  "v": "f"
+ }
 ]
